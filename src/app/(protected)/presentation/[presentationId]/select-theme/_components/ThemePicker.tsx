@@ -6,6 +6,9 @@ import { Loader2, Wand2 } from 'lucide-react'
 import { useParams, useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { toast } from 'sonner'
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { motion } from 'framer-motion'
+import { themes } from '@/lib/constants'
 
 
 type Props = {
@@ -126,8 +129,56 @@ const ThemePicker = ({
           )}
         </Button>
       </div>
-      <ScrollArea>
-        
+      <ScrollArea className='flex=grow px-8 pb-8'>
+
+        <div className="grid grid-cols-1 gap-4">
+          {
+            themes.map((theme) => (
+                <motion.div key={theme.name}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                >
+                    <Button
+                    className='flex flex-col items-center justify-start p-5 w-full h-auto'
+                    onClick={() => {
+                        onThemeSelect(theme)
+                    }}
+                     style={{
+                                    fontFamily: theme.fontFamily,
+                                    color: theme.fontColor,
+                                    background: theme.gradientBackground || theme.backgroundColor,
+                                }}
+                    >
+                        <div
+                        className='w-full flex items-center justify-between'
+                        >
+                            <span className='text-xl font-bold'>{theme.name}</span>
+                                    <div className="w-3 h-3 rounded-full" style={{
+                                        backgroundColor: theme.accentColor
+                                    }} />
+                        </div>
+                        <div className='space-y-1 w-full'>
+                                   <div className='text-2xl font-bold'
+                                        style={{
+                                            color: theme.accentColor
+                                        }}>
+                                        Title
+                                    </div>
+
+                             <div className='text-base opacity-80'>
+                                        Body & {' '}
+                                        <span
+                                            style={{ color: theme.accentColor }}
+                                        >link</span>
+                                    </div>
+                        </div>
+                    </Button>
+                </motion.div>
+
+            ))
+          }
+        </div>
+
       </ScrollArea>
     </div>
   )

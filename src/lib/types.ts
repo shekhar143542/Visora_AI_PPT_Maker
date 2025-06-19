@@ -66,6 +66,7 @@ export interface Theme {
     slideBackgroundColor?: string;
     accentColor: string;
     gradientColor?: string;
+    gradientBackground?: string;
     navbarColor?: string;
     sidebarColor?: string;
     type: 'light' | 'dark';
