@@ -57,8 +57,28 @@ const ThemePicker = ({
             throw new Error('Failed to generate layouts')
         }
 
+        toast.success('Success',{
+            description: 'Layouts generated',
+        })
+
+        router.push(`/presentation/${project?.id}`)
+        setSlides(res.data)
+
     } catch (error) {
-        
+
+        toast.error(
+         "Error",
+        {
+        description: "Failed to generate layouts",
+      });
+
+        return{
+            status:500,
+            error:'Internal server error'
+
+        }
+    }finally{
+        setLoading(false)
     }
 }
 
@@ -106,6 +126,9 @@ const ThemePicker = ({
           )}
         </Button>
       </div>
+      <ScrollArea>
+        
+      </ScrollArea>
     </div>
   )
 }
