@@ -3,13 +3,16 @@
 import { getProjectById } from '@/actions/project'
 import { themes } from '@/lib/constants'
 import { useSlideStore } from '@/store/useSlideStore'
-import { Description } from '@radix-ui/react-dialog'
 import { Loader2 } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { redirect, useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'sonner'
 import {DndProvider} from 'react-dnd'
+import { HTML5Backend} from 'react-dnd-html5-backend'
+import Navbar from './_components/Navbar/Navbar'
+import LayoutPreview from './_components/editor-sidebar/leftsidebar/LayoutPreview'
+import Editor from './_components/editor/Editor'
 
 
 type Props = {
@@ -63,8 +66,23 @@ const page = (props: Props) => {
     }
 
   return (
-    <DndProvider>
-
+    <DndProvider backend={HTML5Backend} >
+        <div className="min-h-screen flex flex-col">
+            <Navbar presentationId={params.presentation as string}/>
+            <div
+            className="flex flex-1 overflow-hidden pt-16"
+          style={{
+            color: currentTheme.accentColor,
+            fontFamily: currentTheme.fontFamily,
+            backgroundColor: currentTheme.backgroundColor,
+          }}
+            >
+                <LayoutPreview/>
+                <div className="flex-1 ml-64 pr-16">
+                    <Editor isEditable={true} />
+                </div>
+            </div>
+        </div>
     </DndProvider>
   )
 }

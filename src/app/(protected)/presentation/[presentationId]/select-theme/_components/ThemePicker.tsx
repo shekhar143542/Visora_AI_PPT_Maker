@@ -129,57 +129,57 @@ const ThemePicker = ({
           )}
         </Button>
       </div>
-      <ScrollArea className='flex=grow px-8 pb-8'>
+<ScrollArea className="flex-grow px-8 pb-10">
+  <div className="grid grid-cols-1 gap-6">
+    {themes.map((theme) => (
+      <motion.div
+        key={theme.name}
+        whileHover={{ scale: 1.015 }}
+        whileTap={{ scale: 0.985 }}
+        className="rounded-3xl overflow-hidden shadow-lg ring-1 ring-black/5 hover:ring-2 hover:ring-black/10 transition-all duration-300 bg-white dark:bg-neutral-900"
+      >
+        <Button
+          className="flex flex-col items-start justify-start w-full h-auto p-6 gap-4 rounded-3xl text-left"
+          onClick={() => onThemeSelect(theme)}
+          style={{
+            fontFamily: theme.fontFamily,
+            color: theme.fontColor,
+            background: theme.gradientBackground || theme.backgroundColor,
+          }}
+        >
+          <div className="w-full flex items-center justify-between">
+            <span className="text-xl sm:text-2xl font-bold tracking-tight drop-shadow-sm">
+              {theme.name}
+            </span>
+            <div
+              className="w-4 h-4 rounded-full border-2 border-white shadow-md"
+              style={{ backgroundColor: theme.accentColor }}
+            />
+          </div>
 
-        <div className="grid grid-cols-1 gap-4">
-          {
-            themes.map((theme) => (
-                <motion.div key={theme.name}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                >
-                    <Button
-                    className='flex flex-col items-center justify-start p-5 w-full h-auto'
-                    onClick={() => {
-                        onThemeSelect(theme)
-                    }}
-                     style={{
-                                    fontFamily: theme.fontFamily,
-                                    color: theme.fontColor,
-                                    background: theme.gradientBackground || theme.backgroundColor,
-                                }}
-                    >
-                        <div
-                        className='w-full flex items-center justify-between'
-                        >
-                            <span className='text-xl font-bold'>{theme.name}</span>
-                                    <div className="w-3 h-3 rounded-full" style={{
-                                        backgroundColor: theme.accentColor
-                                    }} />
-                        </div>
-                        <div className='space-y-1 w-full'>
-                                   <div className='text-2xl font-bold'
-                                        style={{
-                                            color: theme.accentColor
-                                        }}>
-                                        Title
-                                    </div>
+          <div className="w-full space-y-2">
+            <div
+              className="text-4xl font-extrabold leading-tight tracking-tight drop-shadow-sm"
+              style={{ color: theme.accentColor }}
+            >
+              Title
+            </div>
+            <div className="text-base font-medium opacity-90 tracking-wide leading-snug">
+              Body &{" "}
+              <span
+                className="underline underline-offset-4 font-semibold"
+                style={{ color: theme.accentColor }}
+              >
+                link
+              </span>
+            </div>
+          </div>
+        </Button>
+      </motion.div>
+    ))}
+  </div>
+</ScrollArea>
 
-                             <div className='text-base opacity-80'>
-                                        Body & {' '}
-                                        <span
-                                            style={{ color: theme.accentColor }}
-                                        >link</span>
-                                    </div>
-                        </div>
-                    </Button>
-                </motion.div>
-
-            ))
-          }
-        </div>
-
-      </ScrollArea>
     </div>
   )
 }
