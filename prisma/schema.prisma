@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
@@ -14,47 +8,35 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// model User {
-//   id        Int      @id @default(autoincrement())
-//   // createdAt DateTime @default(now())
-//   email     String   @unique
-//   name      String?
-// }
-
 model User {
-  id String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  clerkId String @unique
-  name String
-  email String @unique
-  profileImage String?
-  subscription Boolean? @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  email              String    @unique
+  name               String
+  clerkId            String    @unique
+  createdAt          DateTime  @default(now())
   lemonSqueezyApiKey String?
-  storeId String?
-  webhookSecret String?
+  profileImage       String?
+  storeId            String?
+  subscription       Boolean?  @default(false)
+  updatedAt          DateTime  @updatedAt
+  webhookSecret      String?
+  id                 String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  Projects           Project[] @relation("OwnedProjects")
+  PurchasedProjects  Project[] @relation("PurchasedProjects")
+}
 
-  Projects Project[] @relation("OwnedProjects")
-  PurchasedProjects Project[] @relation("PurchasedProjects")
-
-  }
-
-
-  model Project {
-    id String @id @default(cuid())
-    title String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    slides Json?
-    userId String @db.Uuid
-    outlines String[]
-    isDeleted Boolean? @default(false)
-    isSellable Boolean? @default(false)
-    varientId String?
-    thumbnail String?
-    themeName String? @default("light")
-
-    User User @relation("OwnedProjects", fields: [userId], references: [id])
-    PurchasedBy User[] @relation("PurchasedProjects")
-
-  }
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  slides      Json?
+  userId      String   @db.Uuid
+  outlines    String[]
+  isDeleted   Boolean? @default(false)
+  isSellable  Boolean? @default(false)
+  varientId   String?
+  thumbnail   String?
+  themeName   String?  @default("light")
+  User        User     @relation("OwnedProjects", fields: [userId], references: [id])
+  PurchasedBy User[]   @relation("PurchasedProjects")
+}

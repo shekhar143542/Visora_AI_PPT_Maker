@@ -3,15 +3,15 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useSlideStore } from '@/store/useSlideStore'
 import React, { useEffect, useState } from 'react'
 
-type Props = {
 
-}
 
-const LayoutPreview = (props: Props) => {
+const LayoutPreview = () => {
 
     const {getOrderSlides, reorderSlides} = useSlideStore();
 
     const slides = getOrderSlides()
+
+    console.log("slides in LayoutPreview", slides);
 
     const [loading, setLoading] = useState(true);
 

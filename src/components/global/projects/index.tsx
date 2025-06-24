@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { Project } from '@prisma/client'
 import { motion } from 'framer-motion'

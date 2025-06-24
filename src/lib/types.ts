@@ -20,6 +20,8 @@ export type ContentType =
     | 'heading1'
     | 'heading2'
     | 'heading3'
+    | 'heading4'
+    | 'title'
     | 'table'
     | 'blockquote'
     | 'numberedList'

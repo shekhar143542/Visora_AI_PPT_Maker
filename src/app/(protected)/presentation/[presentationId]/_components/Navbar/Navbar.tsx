@@ -165,8 +165,8 @@ const Navbar = ({ presentationId }: Props) => {
       </Link>
 
       <Link href={'/presentation/template-market'} className="text-lg font-semibold hidden sm:block">
-        {/* {project?.title} */}
-        Presentation Editor
+        {project?.title}
+        {/* Presentation Editor */}
       </Link>
 
       <div className="flex items-center gap-4">
