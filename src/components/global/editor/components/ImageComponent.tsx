@@ -27,6 +27,8 @@ export const CustomImage: React.FC<ImageProps> = ({
   isEditable = true,
   imageLoading,
 }) => {
+
+  //WIP add open ai image
   return (
     <div className={`relative group w-full h-full rounded-lg`}>
       {imageLoading ? (

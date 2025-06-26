@@ -266,3 +266,66 @@ export const getProjectById = async (projectId: string) => {
         }
     }
 }
+
+
+import { JsonValue } from "@prisma/client/runtime/library";
+
+export const updateSlides = async (projectId: string, slides: JsonValue) => {
+  try {
+    // console.log("Updating slides for project with ID:", projectId);
+    // console.log("Slides:", slides);
+
+    // Validate input
+    if (!projectId || !slides ) {
+      return { status: 400, error: "Project ID and slides are required." };
+    }
+
+    // Update the project with the new slides
+    const updatedProject = await client.project.update({
+      where: {
+        id: projectId,
+      },
+      data: {
+        slides,
+      },
+    });
+
+    if (!updatedProject) {
+      return { status: 500, error: "Failed to update slides" };
+    }
+
+    return { status: 200, data: updatedProject };
+  } catch (error) {
+    console.error("🔴 ERROR", error);
+    return { status: 500, error: "Internal server error" };
+  }
+}
+
+
+export const updateTheme = async(projectId:string, theme: string) => {
+  try{// Validate input
+    if (!projectId || !theme ) {
+      return { status: 400, error: "Project ID and slides are required." };
+    }
+
+    // Update the project with the new slides
+    const updatedProject = await client.project.update({
+      where: {
+        id: projectId,
+      },
+      data: {
+        themeName:theme,
+      },
+    });
+
+    if (!updatedProject) {
+      return { status: 500, error: "Failed to update slides" };
+    }
+
+    return { status: 200, data: updatedProject };
+
+  }catch(error){
+    console.error("🔴 ERROR", error);
+    return { status: 500, error: "Internal server error" };
+  }
+}

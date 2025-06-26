@@ -70,7 +70,7 @@ export const ColumnComponent: React.FC<ColumnProps> = ({
                   onContentChange={onContentChange}
                   slideId={slideId}
                   isEditable={isEditable}
-                //   imageLoading={imageLoading}
+                  imageLoading={imageLoading}
                 />
               </div>
             </ResizablePanel>

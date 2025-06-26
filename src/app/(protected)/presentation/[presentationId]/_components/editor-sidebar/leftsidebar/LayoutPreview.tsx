@@ -2,22 +2,26 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useSlideStore } from '@/store/useSlideStore'
 import React, { useEffect, useState } from 'react'
+import { DraggableSlidePreview } from './DragabbleSlidePreview';
 
 
+type Props = {
+  loading?: boolean;
+};
 
-const LayoutPreview = () => {
+const LayoutPreview = ({ loading }: Props) => {
 
-    const {getOrderSlides, reorderSlides} = useSlideStore();
+    const {getOrderedSlides, reorderSlides} = useSlideStore();
 
-    const slides = getOrderSlides()
+    const slides = getOrderedSlides()
 
     console.log("slides in LayoutPreview", slides);
 
-    const [loading, setLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
 
 
     useEffect(() => {
-    if (typeof window !== "undefined") setLoading(false);
+    if (typeof window !== "undefined") setIsLoading(false);
   }, []);
 
   const moveSlide = (draIndex: number, hoverIndex: number) => {
@@ -32,7 +36,7 @@ const LayoutPreview = () => {
     <div className="w-72  h-full fixed left-0 top-20 border-r overflow-y-auto">
 
         <ScrollArea className="h-full w-full" suppressHydrationWarning>
-             {loading ? (
+             {isLoading ? (
           <div className="w-full px-4 flex flex-col space-y-6">
             <Skeleton className="h-20 w-full" />
             <Skeleton className="h-20 w-full" />
@@ -53,14 +57,14 @@ const LayoutPreview = () => {
             </div>
 
             {/* WIP add draggable slide preview */}
-            {/* {slides.map((slide, index) => (
-              <DragabbleSlidePreview
+            {slides.map((slide, index) => (
+              <DraggableSlidePreview
                 key={slide.id || index}
                 slide={slide}
                 index={index}
                 moveSlide={moveSlide}
               />
-            ))} */}
+            ))}
           </div>
         )}
         

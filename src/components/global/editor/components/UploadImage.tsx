@@ -11,6 +11,8 @@ type Props = {
 };
 
 function UploadImage({ contentId, onContentChange }: Props) {
+  console.log("UPLOADCARE_KEY:", process.env.NEXT_PUBLIC_UPLOADCARE_PUB_KEY);
+
   const handleChangeEvent = (e: { cdnUrl: string | string[] | string[][]; }) => {
     onContentChange(contentId, e.cdnUrl);
   };
@@ -20,7 +22,7 @@ function UploadImage({ contentId, onContentChange }: Props) {
       <FileUploaderRegular
         sourceList="local, url, dropbox"
         classNameUploader="uc-light"
-        pubkey={process.env.UPLOADCARE_PUBLIC_KEY!}
+        pubkey={process.env.NEXT_PUBLIC_UPLOADCARE_PUB_KEY!}
         multiple={false}
         onFileUploadSuccess={handleChangeEvent}
         maxLocalFileSizeBytes={10000000}

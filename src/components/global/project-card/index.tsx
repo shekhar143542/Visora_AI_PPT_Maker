@@ -131,17 +131,17 @@ const ProjectCard = ({
         <div className='relative aspect-[16/10] overflow-hidden rounded-lg cursor-pointer'
         onClick={handleNavigateToProject}
         >
-           {/* <ThumbnailPreview 
+         <ThumbnailPreview 
            theme={theme}
-           //WIP ADD the slide data
-          //slide={JSON.parse(JSON.stringify(slideData))?.[0]}
-          />  */}
+         
+          slide={JSON.parse(JSON.stringify(slideData))?.[0]}
+          />  
           
         </div>
         <div className='w-full'>
             <div className='space-y-1'>
                 <h3 className='font-semibold text-base text-primary line-clamp-1'>
-                    {title}This is the title that i want to see
+                    {title}
                 </h3>
                 <div className='flex w-full justify-between items-center gap-2'>
                     <p className="text-sm text-muted-foreground dark:text-gray-400"

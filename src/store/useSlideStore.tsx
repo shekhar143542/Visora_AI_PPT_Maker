@@ -14,7 +14,7 @@ interface SlideState {
     currentTheme: Theme
     removeSlide: (id: string) => void
     setCurrentTheme: (theme:Theme) => void
-    getOrderSlides: () => Slide[]
+    getOrderedSlides: () => Slide[];
     reorderSlides: (fromIndex: number, toIndex: number) => void
     addSlideAtIndex: (slide: Slide, index: number) => void
     setCurrentSlide: (index: number) => void;
@@ -30,6 +30,7 @@ interface SlideState {
     parentId: string,
     index: number
   ) => void;
+    resetSlideStore: () => void;
 }
    
 const defaultTheme: Theme = {
@@ -52,10 +53,10 @@ export const useSlideStore = create(persist <SlideState>((set, get) => ({
     currentSlide:0,
     currentTheme: defaultTheme,
     setCurrentTheme: (theme:Theme) => set({currentTheme:theme}),
-    getOrderSlides: () => {
+    getOrderedSlides: () => {
         const state = get();
-        return [...state.slides].sort((a,b) => a.slideOrder - b.slideOrder)
-    },
+        return [...state.slides].sort((a, b) => a.slideOrder - b.slideOrder);
+      },
 
     addSlideAtIndex: (slide: Slide, index: number) =>
         set((state) => {
@@ -145,6 +146,18 @@ export const useSlideStore = create(persist <SlideState>((set, get) => ({
           });
           return { slides: updatedSlides };
         });
+      },
+
+      resetSlideStore: () => {
+        console.log("🟢 Resetting slide store");
+        set({
+          project: null,
+          slides: [],
+          currentSlide: 0,
+          currentTheme: defaultTheme,
+        });
+        console.log("🟢 Resetting slide store");
+        // Clear persisted data from storage
       },
           
     reorderSlides: (fromIndex: number, toIndex: number) => {

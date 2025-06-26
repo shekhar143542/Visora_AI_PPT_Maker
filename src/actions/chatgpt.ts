@@ -1,8 +1,8 @@
-'use server';
+'use server'
 
-import { client } from '@/lib/prisma';
-import { ContentItem, ContentType, Slide } from '@/lib/types';
-import { currentUser } from '@clerk/nextjs/server';
+import { client } from '@/lib/prisma'
+import { ContentItem, ContentType, Slide } from '@/lib/types'
+import { currentUser } from '@clerk/nextjs/server'
 import OpenAI from 'openai'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -11,87 +11,65 @@ const openai = new OpenAI({
 })
 
 export const generateCreativePrompt = async (userPrompt: string) => {
-
     const openai = new OpenAI({
         apiKey: process.env.OPENAI_API_KEY,
-
-
     })
 
     const finalPrompt = `
-        Create a coherent and relavant outline for the following prompt:
-        ${userPrompt}.
-        The outline should be consist of at least 6 points, which each point written as a single sentence.
-        Ensure tha outline is well-structured and directly related to the topic.
-        Return the output in the following JSON format:
-
-        {
-        "outlines": [
-        "point 1",
-        "point 2",
-        "point 3",
-        "point 4",
-        "point 5",
-        "point 6"
-        ]
-        }
-
-        Ensure that the JSON is valid and properly formatted. Do not include any other text or explanations.
-        outside the JSON. 
+    Create a coherent and relevant outline for the following prompt: ${userPrompt}.
+    The outline should consist of at least 6 points, with each point written as a single sentence.
+    Ensure the outline is well-structured and directly related to the topic. 
+    Return the output in the following JSON format:
+  
+    {
+      "outlines": [
+        "Point 1",
+        "Point 2",
+        "Point 3",
+        "Point 4",
+        "Point 5",
+        "Point 6"
+      ]
+    }
+  
+    Ensure that the JSON is valid and properly formatted. Do not include any other text or explanations outside the JSON.
     `
 
     try {
+        const completion = await openai.chat.completions.create({
+            model: 'chatgpt-4o-latest',
+            messages: [
+                {
+                    role: 'system',
+                    content:
+                        'You are a helpful AI that generates outlines for presentations.',
+                },
+                {
+                    role: 'user',
+                    content: finalPrompt,
+                },
+            ],
+            max_tokens: 1000,
+            temperature: 0.0,
+        })
 
-    const completion = await openai.chat.completions.create({
-        model: 'chatgpt-4o-latest',
-        messages: [
-            {
-                role: 'system',
-                content:
-                'You are a helpful AI that generates outlines for presentations'
-            },
-            {
-                role: 'user',
-                content: finalPrompt,
-            },
-        ],
-
-        max_tokens:1000,
-        temperature:0.0,
-    })
-
-    const responseContent = completion.choices[0].message?.content
-        if(responseContent){
+        const responseContent = completion.choices[0].message?.content
+        if (responseContent) {
             try {
                 const jsonResponse = JSON.parse(responseContent)
-                return {
-                    status:200,
-                    data: jsonResponse
-                }
+                return { status: 200, data: jsonResponse }
             } catch (error) {
-                console.log('Invalid JSON received', responseContent,error)
-                return{
-                    status:500,
-                    error: 'Invalid JSON received',
-                }
+                console.error('Invalid JSON received:', responseContent, error)
+                return { status: 500, error: 'Invalid JSON format received from AI' }
             }
         }
 
-        return {
-            status:400,
-            error: 'No response received',
-        }
-
+        return { status: 400, error: 'No content generated' }
     } catch (error) {
-        console.error('Error generating creative prompt:', error);
-        return {
-            status: 500,
-            message: 'Internal server error',
-        };
-        
+        console.error('🔴 ERROR', error)
+        return { status: 500, error: 'Internal server error' }
     }
 }
-
 
 const existingLayouts = [
     {
@@ -555,7 +533,6 @@ const findImageComponents = (layout: ContentItem): ContentItem[] => {
     return images
 }
 
-
 const replaceImagePlaceholders = async (layout: Slide) => {
     const imageComponents = findImageComponents(layout.content)
     console.log('🟢 Found image components:', imageComponents)
@@ -568,8 +545,7 @@ const replaceImagePlaceholders = async (layout: Slide) => {
 }
 
 export const generateLayoutsJson = async (outlineArray: string[]) => {
-    // Add your layouts here
-     const prompt = `### Guidelines
+    const prompt = `### Guidelines
 You are a highly creative AI that generates JSON-based layouts for presentations. I will provide you with a pattern and a format to follow, and for each outline, you must generate unique layouts and contents and give me the output in the JSON format expected.
 Our final JSON output is a combination of layouts and elements. The available LAYOUTS TYPES are as follows: "accentLeft", "accentRight", "imageAndText", "textAndImage", "twoColumns", "twoColumnsWithHeadings", "threeColumns", "threeColumnsWithHeadings", "fourColumns", "twoImageColumns", "threeImageColumns", "fourImageColumns", "tableLayout".
 The available CONTENT TYPES are "heading1", "heading2", "heading3", "heading4", "title", "paragraph", "table", "resizable-column", "image", "blockquote", "numberedList", "bulletList", "todoList", "calloutBox", "codeBlock", "tableOfContents", "divider", "column"
@@ -706,6 +682,36 @@ ${JSON.stringify([
   Output the layouts in JSON format. Ensure there are no duplicate layouts across the array.
 `
 
+    //   `
+    //   You are a highly creative AI that generates JSON-based layouts for presentations. I will provide you with an array of outlines, and for each outline, you must generate a unique and creative layout. Use the existing layouts as examples for structure and design, and generate unique designs based on the provided outline.
+
+    //   ### Guidelines:
+    //   1. Write layouts based on the specific outline provided. Do not use types that are not mentioned in the example layouts.
+    //   2. Use diverse and engaging designs, ensuring each layout is unique.
+    //   3. Adhere to the structure of existing layouts but add new styles or components if needed.
+    //   4. Fill placeholder data into content fields where required.
+    //   5. Generate unique image placeholders for the 'content' property of image components and also alt text according to the outline.
+    //   6. Ensure proper formatting and schema alignment for the output JSON.
+
+    //   ### Example Layouts:
+    //   ${JSON.stringify(existingLayouts, null, 2)}
+
+    //   ### Outline Array:
+    //   ${JSON.stringify(outlineArray)}
+
+    //   For each entry in the outline array, generate:
+    //   - A unique JSON layout with creative designs.
+    //   - Properly filled content, including placeholders for image components.
+    //   - Clear and well-structured JSON data.
+    //   For Images
+    //   - The alt text should describe the image clearly and concisely.
+    //   - Focus on the main subject(s) of the image and any relevant details such as colors, shapes, people, or objects.
+    //   - Ensure the alt text aligns with the context of the presentation slide it will be used on (e.g., professional, educational, business-related).
+    //   - Avoid using terms like "image of" or "picture of," and instead focus directly on the content and meaning.
+
+    //   Output the layouts in JSON format. Ensure there are no duplicate layouts across the array.
+    // `
+
     try {
         console.log('🟢 Generating layouts...')
         const completion = await openai.chat.completions.create({
@@ -727,9 +733,8 @@ ${JSON.stringify([
             return { status: 400, error: 'No content generated' }
         }
 
-        let jsonResponse;
-
-         try {
+        let jsonResponse
+        try {
             jsonResponse = JSON.parse(responseContent.replace(/```json|```/g, ''))
             await Promise.all(jsonResponse.map(replaceImagePlaceholders))
         } catch (error) {
@@ -737,91 +742,112 @@ ${JSON.stringify([
             throw new Error('Invalid JSON format received from AI')
         }
 
-        console.log(' Layouts generated successfully')
+        console.log('🟢 Layouts generated successfully')
         return { status: 200, data: jsonResponse }
-
     } catch (error) {
-        return{
-            status: 500,
-            error: 'Internal Server Error',
-        }
+        console.error('🔴 ERROR:', error)
+        return { status: 500, error: 'Internal server error' }
     }
-
-
-
 }
-
 
 export const generateLayouts = async (projectId: string, theme: string) => {
     try {
-        if(!projectId){
-            return{
-                status:400,
-                error: 'Project ID is required',
-            }
+        if (!projectId) {
+            return { status: 400, error: 'Project ID is required' }
+        }
+        const user = await currentUser()
+        if (!user) {
+            return { status: 403, error: 'User not authenticated' }
         }
 
-        const user = await currentUser();
-        if(!user){
-            return{
-                status: 403,
-                error:'User not authenticated'
-            }
-        }
-
-        const userExists = await client.user.findUnique({
-            where: {clerkId: user.id},
+        const userExist = await client.user.findUnique({
+            where: { clerkId: user.id },
         })
 
-        if(!userExists || !userExists.subscription){
+        if (!userExist || !userExist.subscription) {
             return {
-                status:403,
-                error: !userExists?.subscription ?
-               ' User does not have an active subscription' :
-               'User not found in the database',
+                status: 403,
+                error: !userExist?.subscription
+                    ? 'User does not have an active subscription'
+                    : 'User not found in the database',
             }
         }
 
         const project = await client.project.findUnique({
-            where: {id: projectId , isDeleted:false},
+            where: { id: projectId, isDeleted: false },
         })
 
-        if(!project){
-            return{
-                status: 404,
-                error: 'Project not found',
-            }
+        if (!project) {
+            return { status: 404, error: 'Project not found' }
         }
 
-        if(!project.outlines || project.outlines.length === 0){
-            return{
-                status: 400,
-                error: 'Project does not have any outlines',
-            }
+        if (!project.outlines || project.outlines.length === 0) {
+            return { status: 400, error: 'Project does not have any outlines' }
         }
 
         const layouts = await generateLayoutsJson(project.outlines)
 
-        if(layouts.status !== 200){
+        if (layouts.status !== 200) {
             return layouts
         }
 
         await client.project.update({
-            where: {id: projectId},
-            data: {slides: layouts.data, themeName:theme},
+            where: { id: projectId },
+            data: { slides: layouts.data, themeName: theme },
         })
 
-        return {
-            status:200,
-            data:layouts.data
-        }
-
+        return { status: 200, data: layouts.data }
     } catch (error) {
-
-        return {
-            status:500,
-            error:'Internal serer error', data:[]
-        }
-        
+        console.error('🔴 ERROR:', error)
+        return { status: 500, error: 'Internal server error', data: [] }
     }
 }
+
+export const generateImages = async (slides: Slide[]) => {
+  try {
+    console.log("🟢 Generating images for slides...");
+
+    // Create a deep clone to preserve original data
+    const slidesCopy: Slide[] = JSON.parse(JSON.stringify(slides));
+
+    // Process cloned slides
+    const processedSlides = await Promise.all(
+      slidesCopy.map(async (slide) => {
+        const updatedContent = await processSlideContent(slide.content);
+        return { ...slide, content: updatedContent };
+      })
+    );
+
+    console.log("🟢 Images generated successfully");
+    return { status: 200, data: processedSlides };
+  } catch (error) {
+    console.error("🔴 ERROR:", error);
+    return { status: 500, error: "Internal server error" };
+  }
+};
+
+
+const processSlideContent = async (
+  content: ContentItem
+): Promise<ContentItem> => {
+  // Create a deep clone of the content structure
+  const contentClone: ContentItem = JSON.parse(JSON.stringify(content));
+  const imageComponents = findImageComponents(contentClone);
+
+  // Process images in parallel while maintaining structure
+  await Promise.all(
+    imageComponents.map(async (component) => {
+      try {
+        const newUrl = await generateImageUrl(
+          component.alt || "Placeholder Image"
+        );
+        component.content = newUrl;
+      } catch (error) {
+        console.error("🔴 Image generation failed:", error);
+        component.content = "https://via.placeholder.com/1024";
+      }
+    })
+  );
+
+  return contentClone;
+};

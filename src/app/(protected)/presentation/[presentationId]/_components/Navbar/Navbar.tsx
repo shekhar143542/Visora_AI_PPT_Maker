@@ -105,6 +105,7 @@ import React, { useState } from 'react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { useSlideStore } from '@/store/useSlideStore'
+import PresentationMode from './PresentationMode'
 
 type Props = {
   presentationId: string
@@ -205,10 +206,10 @@ const Navbar = ({ presentationId }: Props) => {
         </Button>
       </div>
 
-      {/* WIP  add presentaiton mode*/}
-      {/* {isPresentationMode && (
+   
+      {isPresentationMode && (
         <PresentationMode onClose={() => setIsPresentationMode(false)} />
-      )} */}
+      )}
     </nav>
   )
 }
