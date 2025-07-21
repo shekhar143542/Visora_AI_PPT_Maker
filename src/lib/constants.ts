@@ -1,6 +1,7 @@
 import NavMain from "@/components/global/app-sidebar/nav-main";
 import { HomeIcon, LayoutTemplateIcon, SettingsIcon, TrashIcon } from "lucide-react";
 import { ComponentGroup, LayoutGroup, LayoutSlides, Theme } from "@/lib/types";
+
 import {
   BlankCard,
   AccentLeft,
@@ -89,7 +90,7 @@ export const itemVariants = {
             type: "spring",
             stiffness: 100,
             // damping: 20
-        }
+        }as const,
     }
 }
 
