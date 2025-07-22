@@ -121,17 +121,17 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 });
 
 exports.Prisma.UserScalarFieldEnum = {
-  id: 'id',
-  clerkId: 'clerkId',
-  name: 'name',
   email: 'email',
-  profileImage: 'profileImage',
-  subscription: 'subscription',
+  name: 'name',
+  clerkId: 'clerkId',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
   lemonSqueezyApiKey: 'lemonSqueezyApiKey',
+  profileImage: 'profileImage',
   storeId: 'storeId',
-  webhookSecret: 'webhookSecret'
+  subscription: 'subscription',
+  updatedAt: 'updatedAt',
+  webhookSecret: 'webhookSecret',
+  id: 'id'
 };
 
 exports.Prisma.ProjectScalarFieldEnum = {

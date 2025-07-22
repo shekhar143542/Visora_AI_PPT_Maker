@@ -1041,89 +1041,89 @@ export namespace Prisma {
   }
 
   export type UserMinAggregateOutputType = {
-    id: string | null
-    clerkId: string | null
-    name: string | null
     email: string | null
-    profileImage: string | null
-    subscription: boolean | null
+    name: string | null
+    clerkId: string | null
     createdAt: Date | null
-    updatedAt: Date | null
     lemonSqueezyApiKey: string | null
+    profileImage: string | null
     storeId: string | null
+    subscription: boolean | null
+    updatedAt: Date | null
     webhookSecret: string | null
+    id: string | null
   }
 
   export type UserMaxAggregateOutputType = {
-    id: string | null
-    clerkId: string | null
-    name: string | null
     email: string | null
-    profileImage: string | null
-    subscription: boolean | null
+    name: string | null
+    clerkId: string | null
     createdAt: Date | null
-    updatedAt: Date | null
     lemonSqueezyApiKey: string | null
+    profileImage: string | null
     storeId: string | null
+    subscription: boolean | null
+    updatedAt: Date | null
     webhookSecret: string | null
+    id: string | null
   }
 
   export type UserCountAggregateOutputType = {
-    id: number
-    clerkId: number
-    name: number
     email: number
-    profileImage: number
-    subscription: number
+    name: number
+    clerkId: number
     createdAt: number
-    updatedAt: number
     lemonSqueezyApiKey: number
+    profileImage: number
     storeId: number
+    subscription: number
+    updatedAt: number
     webhookSecret: number
+    id: number
     _all: number
   }
 
 
   export type UserMinAggregateInputType = {
-    id?: true
-    clerkId?: true
-    name?: true
     email?: true
-    profileImage?: true
-    subscription?: true
+    name?: true
+    clerkId?: true
     createdAt?: true
-    updatedAt?: true
     lemonSqueezyApiKey?: true
+    profileImage?: true
     storeId?: true
+    subscription?: true
+    updatedAt?: true
     webhookSecret?: true
+    id?: true
   }
 
   export type UserMaxAggregateInputType = {
-    id?: true
-    clerkId?: true
-    name?: true
     email?: true
-    profileImage?: true
-    subscription?: true
+    name?: true
+    clerkId?: true
     createdAt?: true
-    updatedAt?: true
     lemonSqueezyApiKey?: true
+    profileImage?: true
     storeId?: true
+    subscription?: true
+    updatedAt?: true
     webhookSecret?: true
+    id?: true
   }
 
   export type UserCountAggregateInputType = {
-    id?: true
-    clerkId?: true
-    name?: true
     email?: true
-    profileImage?: true
-    subscription?: true
+    name?: true
+    clerkId?: true
     createdAt?: true
-    updatedAt?: true
     lemonSqueezyApiKey?: true
+    profileImage?: true
     storeId?: true
+    subscription?: true
+    updatedAt?: true
     webhookSecret?: true
+    id?: true
     _all?: true
   }
 
@@ -1200,17 +1200,17 @@ export namespace Prisma {
   }
 
   export type UserGroupByOutputType = {
-    id: string
-    clerkId: string
-    name: string
     email: string
-    profileImage: string | null
-    subscription: boolean | null
+    name: string
+    clerkId: string
     createdAt: Date
-    updatedAt: Date
     lemonSqueezyApiKey: string | null
+    profileImage: string | null
     storeId: string | null
+    subscription: boolean | null
+    updatedAt: Date
     webhookSecret: string | null
+    id: string
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
     _max: UserMaxAggregateOutputType | null
@@ -1231,65 +1231,65 @@ export namespace Prisma {
 
 
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    clerkId?: boolean
-    name?: boolean
     email?: boolean
-    profileImage?: boolean
-    subscription?: boolean
+    name?: boolean
+    clerkId?: boolean
     createdAt?: boolean
-    updatedAt?: boolean
     lemonSqueezyApiKey?: boolean
+    profileImage?: boolean
     storeId?: boolean
+    subscription?: boolean
+    updatedAt?: boolean
     webhookSecret?: boolean
+    id?: boolean
     Projects?: boolean | User$ProjectsArgs<ExtArgs>
     PurchasedProjects?: boolean | User$PurchasedProjectsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    clerkId?: boolean
-    name?: boolean
     email?: boolean
-    profileImage?: boolean
-    subscription?: boolean
+    name?: boolean
+    clerkId?: boolean
     createdAt?: boolean
-    updatedAt?: boolean
     lemonSqueezyApiKey?: boolean
+    profileImage?: boolean
     storeId?: boolean
+    subscription?: boolean
+    updatedAt?: boolean
     webhookSecret?: boolean
+    id?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    clerkId?: boolean
-    name?: boolean
     email?: boolean
-    profileImage?: boolean
-    subscription?: boolean
+    name?: boolean
+    clerkId?: boolean
     createdAt?: boolean
-    updatedAt?: boolean
     lemonSqueezyApiKey?: boolean
+    profileImage?: boolean
     storeId?: boolean
+    subscription?: boolean
+    updatedAt?: boolean
     webhookSecret?: boolean
+    id?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
-    id?: boolean
-    clerkId?: boolean
-    name?: boolean
     email?: boolean
-    profileImage?: boolean
-    subscription?: boolean
+    name?: boolean
+    clerkId?: boolean
     createdAt?: boolean
-    updatedAt?: boolean
     lemonSqueezyApiKey?: boolean
+    profileImage?: boolean
     storeId?: boolean
+    subscription?: boolean
+    updatedAt?: boolean
     webhookSecret?: boolean
+    id?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "clerkId" | "name" | "email" | "profileImage" | "subscription" | "createdAt" | "updatedAt" | "lemonSqueezyApiKey" | "storeId" | "webhookSecret", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"email" | "name" | "clerkId" | "createdAt" | "lemonSqueezyApiKey" | "profileImage" | "storeId" | "subscription" | "updatedAt" | "webhookSecret" | "id", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Projects?: boolean | User$ProjectsArgs<ExtArgs>
     PurchasedProjects?: boolean | User$PurchasedProjectsArgs<ExtArgs>
@@ -1305,17 +1305,17 @@ export namespace Prisma {
       PurchasedProjects: Prisma.$ProjectPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: string
-      clerkId: string
-      name: string
       email: string
-      profileImage: string | null
-      subscription: boolean | null
+      name: string
+      clerkId: string
       createdAt: Date
-      updatedAt: Date
       lemonSqueezyApiKey: string | null
+      profileImage: string | null
       storeId: string | null
+      subscription: boolean | null
+      updatedAt: Date
       webhookSecret: string | null
+      id: string
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -1399,8 +1399,8 @@ export namespace Prisma {
      * // Get first 10 Users
      * const users = await prisma.user.findMany({ take: 10 })
      * 
-     * // Only select the `id`
-     * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
+     * // Only select the `email`
+     * const userWithEmailOnly = await prisma.user.findMany({ select: { email: true } })
      * 
      */
     findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
@@ -1444,9 +1444,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Create many Users and only return the `id`
-     * const userWithIdOnly = await prisma.user.createManyAndReturn({
-     *   select: { id: true },
+     * // Create many Users and only return the `email`
+     * const userWithEmailOnly = await prisma.user.createManyAndReturn({
+     *   select: { email: true },
      *   data: [
      *     // ... provide data here
      *   ]
@@ -1535,9 +1535,9 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Users and only return the `id`
-     * const userWithIdOnly = await prisma.user.updateManyAndReturn({
-     *   select: { id: true },
+     * // Update zero or more Users and only return the `email`
+     * const userWithEmailOnly = await prisma.user.updateManyAndReturn({
+     *   select: { email: true },
      *   where: {
      *     // ... provide filter here
      *   },
@@ -1741,17 +1741,17 @@ export namespace Prisma {
    * Fields of the User model
    */
   interface UserFieldRefs {
-    readonly id: FieldRef<"User", 'String'>
-    readonly clerkId: FieldRef<"User", 'String'>
-    readonly name: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
-    readonly profileImage: FieldRef<"User", 'String'>
-    readonly subscription: FieldRef<"User", 'Boolean'>
+    readonly name: FieldRef<"User", 'String'>
+    readonly clerkId: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
-    readonly updatedAt: FieldRef<"User", 'DateTime'>
     readonly lemonSqueezyApiKey: FieldRef<"User", 'String'>
+    readonly profileImage: FieldRef<"User", 'String'>
     readonly storeId: FieldRef<"User", 'String'>
+    readonly subscription: FieldRef<"User", 'Boolean'>
+    readonly updatedAt: FieldRef<"User", 'DateTime'>
     readonly webhookSecret: FieldRef<"User", 'String'>
+    readonly id: FieldRef<"User", 'String'>
   }
     
 
@@ -3392,17 +3392,17 @@ export namespace Prisma {
 
 
   export const UserScalarFieldEnum: {
-    id: 'id',
-    clerkId: 'clerkId',
-    name: 'name',
     email: 'email',
-    profileImage: 'profileImage',
-    subscription: 'subscription',
+    name: 'name',
+    clerkId: 'clerkId',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
     lemonSqueezyApiKey: 'lemonSqueezyApiKey',
+    profileImage: 'profileImage',
     storeId: 'storeId',
-    webhookSecret: 'webhookSecret'
+    subscription: 'subscription',
+    updatedAt: 'updatedAt',
+    webhookSecret: 'webhookSecret',
+    id: 'id'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -3487,13 +3487,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -3504,6 +3497,13 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -3542,68 +3542,68 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    id?: UuidFilter<"User"> | string
-    clerkId?: StringFilter<"User"> | string
-    name?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
-    profileImage?: StringNullableFilter<"User"> | string | null
-    subscription?: BoolNullableFilter<"User"> | boolean | null
+    name?: StringFilter<"User"> | string
+    clerkId?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
-    updatedAt?: DateTimeFilter<"User"> | Date | string
     lemonSqueezyApiKey?: StringNullableFilter<"User"> | string | null
+    profileImage?: StringNullableFilter<"User"> | string | null
     storeId?: StringNullableFilter<"User"> | string | null
+    subscription?: BoolNullableFilter<"User"> | boolean | null
+    updatedAt?: DateTimeFilter<"User"> | Date | string
     webhookSecret?: StringNullableFilter<"User"> | string | null
+    id?: UuidFilter<"User"> | string
     Projects?: ProjectListRelationFilter
     PurchasedProjects?: ProjectListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
-    id?: SortOrder
-    clerkId?: SortOrder
-    name?: SortOrder
     email?: SortOrder
-    profileImage?: SortOrderInput | SortOrder
-    subscription?: SortOrderInput | SortOrder
+    name?: SortOrder
+    clerkId?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
     lemonSqueezyApiKey?: SortOrderInput | SortOrder
+    profileImage?: SortOrderInput | SortOrder
     storeId?: SortOrderInput | SortOrder
+    subscription?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
     webhookSecret?: SortOrderInput | SortOrder
+    id?: SortOrder
     Projects?: ProjectOrderByRelationAggregateInput
     PurchasedProjects?: ProjectOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    clerkId?: string
     email?: string
+    clerkId?: string
+    id?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     name?: StringFilter<"User"> | string
-    profileImage?: StringNullableFilter<"User"> | string | null
-    subscription?: BoolNullableFilter<"User"> | boolean | null
     createdAt?: DateTimeFilter<"User"> | Date | string
-    updatedAt?: DateTimeFilter<"User"> | Date | string
     lemonSqueezyApiKey?: StringNullableFilter<"User"> | string | null
+    profileImage?: StringNullableFilter<"User"> | string | null
     storeId?: StringNullableFilter<"User"> | string | null
+    subscription?: BoolNullableFilter<"User"> | boolean | null
+    updatedAt?: DateTimeFilter<"User"> | Date | string
     webhookSecret?: StringNullableFilter<"User"> | string | null
     Projects?: ProjectListRelationFilter
     PurchasedProjects?: ProjectListRelationFilter
-  }, "id" | "clerkId" | "email">
+  }, "id" | "email" | "clerkId">
 
   export type UserOrderByWithAggregationInput = {
-    id?: SortOrder
-    clerkId?: SortOrder
-    name?: SortOrder
     email?: SortOrder
-    profileImage?: SortOrderInput | SortOrder
-    subscription?: SortOrderInput | SortOrder
+    name?: SortOrder
+    clerkId?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
     lemonSqueezyApiKey?: SortOrderInput | SortOrder
+    profileImage?: SortOrderInput | SortOrder
     storeId?: SortOrderInput | SortOrder
+    subscription?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
     webhookSecret?: SortOrderInput | SortOrder
+    id?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
     _min?: UserMinOrderByAggregateInput
@@ -3613,17 +3613,17 @@ export namespace Prisma {
     AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
-    id?: UuidWithAggregatesFilter<"User"> | string
-    clerkId?: StringWithAggregatesFilter<"User"> | string
-    name?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
-    profileImage?: StringNullableWithAggregatesFilter<"User"> | string | null
-    subscription?: BoolNullableWithAggregatesFilter<"User"> | boolean | null
+    name?: StringWithAggregatesFilter<"User"> | string
+    clerkId?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     lemonSqueezyApiKey?: StringNullableWithAggregatesFilter<"User"> | string | null
+    profileImage?: StringNullableWithAggregatesFilter<"User"> | string | null
     storeId?: StringNullableWithAggregatesFilter<"User"> | string | null
+    subscription?: BoolNullableWithAggregatesFilter<"User"> | boolean | null
+    updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     webhookSecret?: StringNullableWithAggregatesFilter<"User"> | string | null
+    id?: UuidWithAggregatesFilter<"User"> | string
   }
 
   export type ProjectWhereInput = {
@@ -3720,109 +3720,109 @@ export namespace Prisma {
   }
 
   export type UserCreateInput = {
-    id?: string
-    clerkId: string
-    name: string
     email: string
-    profileImage?: string | null
-    subscription?: boolean | null
+    name: string
+    clerkId: string
     createdAt?: Date | string
-    updatedAt?: Date | string
     lemonSqueezyApiKey?: string | null
+    profileImage?: string | null
     storeId?: string | null
+    subscription?: boolean | null
+    updatedAt?: Date | string
     webhookSecret?: string | null
+    id?: string
     Projects?: ProjectCreateNestedManyWithoutUserInput
     PurchasedProjects?: ProjectCreateNestedManyWithoutPurchasedByInput
   }
 
   export type UserUncheckedCreateInput = {
-    id?: string
-    clerkId: string
-    name: string
     email: string
-    profileImage?: string | null
-    subscription?: boolean | null
+    name: string
+    clerkId: string
     createdAt?: Date | string
-    updatedAt?: Date | string
     lemonSqueezyApiKey?: string | null
+    profileImage?: string | null
     storeId?: string | null
+    subscription?: boolean | null
+    updatedAt?: Date | string
     webhookSecret?: string | null
+    id?: string
     Projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
     PurchasedProjects?: ProjectUncheckedCreateNestedManyWithoutPurchasedByInput
   }
 
   export type UserUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    clerkId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
-    subscription?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    name?: StringFieldUpdateOperationsInput | string
+    clerkId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lemonSqueezyApiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     storeId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscription?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     webhookSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    id?: StringFieldUpdateOperationsInput | string
     Projects?: ProjectUpdateManyWithoutUserNestedInput
     PurchasedProjects?: ProjectUpdateManyWithoutPurchasedByNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    clerkId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
-    subscription?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    name?: StringFieldUpdateOperationsInput | string
+    clerkId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lemonSqueezyApiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     storeId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscription?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     webhookSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    id?: StringFieldUpdateOperationsInput | string
     Projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
     PurchasedProjects?: ProjectUncheckedUpdateManyWithoutPurchasedByNestedInput
   }
 
   export type UserCreateManyInput = {
-    id?: string
-    clerkId: string
-    name: string
     email: string
-    profileImage?: string | null
-    subscription?: boolean | null
+    name: string
+    clerkId: string
     createdAt?: Date | string
-    updatedAt?: Date | string
     lemonSqueezyApiKey?: string | null
+    profileImage?: string | null
     storeId?: string | null
+    subscription?: boolean | null
+    updatedAt?: Date | string
     webhookSecret?: string | null
+    id?: string
   }
 
   export type UserUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    clerkId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
-    subscription?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    name?: StringFieldUpdateOperationsInput | string
+    clerkId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lemonSqueezyApiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     storeId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscription?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     webhookSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    id?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    clerkId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
-    subscription?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    name?: StringFieldUpdateOperationsInput | string
+    clerkId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lemonSqueezyApiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     storeId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscription?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     webhookSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    id?: StringFieldUpdateOperationsInput | string
   }
 
   export type ProjectCreateInput = {
@@ -3933,18 +3933,6 @@ export namespace Prisma {
     themeName?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type UuidFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedUuidFilter<$PrismaModel> | string
-  }
-
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -3958,6 +3946,17 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -3980,15 +3979,16 @@ export namespace Prisma {
     not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  export type UuidFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidFilter<$PrismaModel> | string
   }
 
   export type ProjectListRelationFilter = {
@@ -4007,60 +4007,45 @@ export namespace Prisma {
   }
 
   export type UserCountOrderByAggregateInput = {
-    id?: SortOrder
-    clerkId?: SortOrder
-    name?: SortOrder
     email?: SortOrder
-    profileImage?: SortOrder
-    subscription?: SortOrder
+    name?: SortOrder
+    clerkId?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
     lemonSqueezyApiKey?: SortOrder
+    profileImage?: SortOrder
     storeId?: SortOrder
+    subscription?: SortOrder
+    updatedAt?: SortOrder
     webhookSecret?: SortOrder
+    id?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
-    id?: SortOrder
-    clerkId?: SortOrder
-    name?: SortOrder
     email?: SortOrder
-    profileImage?: SortOrder
-    subscription?: SortOrder
+    name?: SortOrder
+    clerkId?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
     lemonSqueezyApiKey?: SortOrder
+    profileImage?: SortOrder
     storeId?: SortOrder
+    subscription?: SortOrder
+    updatedAt?: SortOrder
     webhookSecret?: SortOrder
+    id?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
-    id?: SortOrder
-    clerkId?: SortOrder
-    name?: SortOrder
     email?: SortOrder
-    profileImage?: SortOrder
-    subscription?: SortOrder
+    name?: SortOrder
+    clerkId?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
     lemonSqueezyApiKey?: SortOrder
+    profileImage?: SortOrder
     storeId?: SortOrder
+    subscription?: SortOrder
+    updatedAt?: SortOrder
     webhookSecret?: SortOrder
-  }
-
-  export type UuidWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
+    id?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -4079,6 +4064,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -4107,18 +4106,19 @@ export namespace Prisma {
     _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+  export type UuidWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
   export type JsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -4264,16 +4264,16 @@ export namespace Prisma {
     set?: string
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
   }
 
   export type NullableBoolFieldUpdateOperationsInput = {
     set?: boolean | null
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type ProjectUpdateManyWithoutUserNestedInput = {
@@ -4391,17 +4391,6 @@ export namespace Prisma {
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
   }
 
-  export type NestedUuidFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedUuidFilter<$PrismaModel> | string
-  }
-
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -4414,6 +4403,17 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -4435,18 +4435,7 @@ export namespace Prisma {
     not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type NestedUuidWithAggregatesFilter<$PrismaModel = never> = {
+  export type NestedUuidFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
     notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -4454,21 +4443,7 @@ export namespace Prisma {
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
     gte?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+    not?: NestedUuidFilter<$PrismaModel> | string
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -4486,6 +4461,31 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -4524,18 +4524,18 @@ export namespace Prisma {
     _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+  export type NestedUuidWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedUuidWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
   }
   export type NestedJsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -4687,32 +4687,32 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutProjectsInput = {
-    id?: string
-    clerkId: string
-    name: string
     email: string
-    profileImage?: string | null
-    subscription?: boolean | null
+    name: string
+    clerkId: string
     createdAt?: Date | string
-    updatedAt?: Date | string
     lemonSqueezyApiKey?: string | null
+    profileImage?: string | null
     storeId?: string | null
+    subscription?: boolean | null
+    updatedAt?: Date | string
     webhookSecret?: string | null
+    id?: string
     PurchasedProjects?: ProjectCreateNestedManyWithoutPurchasedByInput
   }
 
   export type UserUncheckedCreateWithoutProjectsInput = {
-    id?: string
-    clerkId: string
-    name: string
     email: string
-    profileImage?: string | null
-    subscription?: boolean | null
+    name: string
+    clerkId: string
     createdAt?: Date | string
-    updatedAt?: Date | string
     lemonSqueezyApiKey?: string | null
+    profileImage?: string | null
     storeId?: string | null
+    subscription?: boolean | null
+    updatedAt?: Date | string
     webhookSecret?: string | null
+    id?: string
     PurchasedProjects?: ProjectUncheckedCreateNestedManyWithoutPurchasedByInput
   }
 
@@ -4722,32 +4722,32 @@ export namespace Prisma {
   }
 
   export type UserCreateWithoutPurchasedProjectsInput = {
-    id?: string
-    clerkId: string
-    name: string
     email: string
-    profileImage?: string | null
-    subscription?: boolean | null
+    name: string
+    clerkId: string
     createdAt?: Date | string
-    updatedAt?: Date | string
     lemonSqueezyApiKey?: string | null
+    profileImage?: string | null
     storeId?: string | null
+    subscription?: boolean | null
+    updatedAt?: Date | string
     webhookSecret?: string | null
+    id?: string
     Projects?: ProjectCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPurchasedProjectsInput = {
-    id?: string
-    clerkId: string
-    name: string
     email: string
-    profileImage?: string | null
-    subscription?: boolean | null
+    name: string
+    clerkId: string
     createdAt?: Date | string
-    updatedAt?: Date | string
     lemonSqueezyApiKey?: string | null
+    profileImage?: string | null
     storeId?: string | null
+    subscription?: boolean | null
+    updatedAt?: Date | string
     webhookSecret?: string | null
+    id?: string
     Projects?: ProjectUncheckedCreateNestedManyWithoutUserInput
   }
 
@@ -4768,32 +4768,32 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutProjectsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    clerkId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
-    subscription?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    name?: StringFieldUpdateOperationsInput | string
+    clerkId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lemonSqueezyApiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     storeId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscription?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     webhookSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    id?: StringFieldUpdateOperationsInput | string
     PurchasedProjects?: ProjectUpdateManyWithoutPurchasedByNestedInput
   }
 
   export type UserUncheckedUpdateWithoutProjectsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    clerkId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
-    subscription?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    name?: StringFieldUpdateOperationsInput | string
+    clerkId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lemonSqueezyApiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     storeId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscription?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     webhookSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    id?: StringFieldUpdateOperationsInput | string
     PurchasedProjects?: ProjectUncheckedUpdateManyWithoutPurchasedByNestedInput
   }
 
@@ -4817,17 +4817,17 @@ export namespace Prisma {
     AND?: UserScalarWhereInput | UserScalarWhereInput[]
     OR?: UserScalarWhereInput[]
     NOT?: UserScalarWhereInput | UserScalarWhereInput[]
-    id?: UuidFilter<"User"> | string
-    clerkId?: StringFilter<"User"> | string
-    name?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
-    profileImage?: StringNullableFilter<"User"> | string | null
-    subscription?: BoolNullableFilter<"User"> | boolean | null
+    name?: StringFilter<"User"> | string
+    clerkId?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
-    updatedAt?: DateTimeFilter<"User"> | Date | string
     lemonSqueezyApiKey?: StringNullableFilter<"User"> | string | null
+    profileImage?: StringNullableFilter<"User"> | string | null
     storeId?: StringNullableFilter<"User"> | string | null
+    subscription?: BoolNullableFilter<"User"> | boolean | null
+    updatedAt?: DateTimeFilter<"User"> | Date | string
     webhookSecret?: StringNullableFilter<"User"> | string | null
+    id?: UuidFilter<"User"> | string
   }
 
   export type ProjectCreateManyUserInput = {
@@ -4934,47 +4934,47 @@ export namespace Prisma {
   }
 
   export type UserUpdateWithoutPurchasedProjectsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    clerkId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
-    subscription?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    name?: StringFieldUpdateOperationsInput | string
+    clerkId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lemonSqueezyApiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     storeId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscription?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     webhookSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    id?: StringFieldUpdateOperationsInput | string
     Projects?: ProjectUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPurchasedProjectsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    clerkId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
-    subscription?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    name?: StringFieldUpdateOperationsInput | string
+    clerkId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lemonSqueezyApiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     storeId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscription?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     webhookSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    id?: StringFieldUpdateOperationsInput | string
     Projects?: ProjectUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateManyWithoutPurchasedProjectsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    clerkId?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
-    subscription?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    name?: StringFieldUpdateOperationsInput | string
+    clerkId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     lemonSqueezyApiKey?: NullableStringFieldUpdateOperationsInput | string | null
+    profileImage?: NullableStringFieldUpdateOperationsInput | string | null
     storeId?: NullableStringFieldUpdateOperationsInput | string | null
+    subscription?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     webhookSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    id?: StringFieldUpdateOperationsInput | string
   }
 
 
