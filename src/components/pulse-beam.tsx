@@ -22,7 +22,7 @@ interface BeamPath {
     transition?: {
       duration?: number;
       repeat?: number;
-      repeatType?: string;
+      repeatType?: "loop" | "reverse" | "mirror";
       ease?: string;
       repeatDelay?: number;
       delay?: number;
@@ -85,7 +85,20 @@ export const PulseBeams = ({
   );
 };
 
-const SVGs = ({ beams, width, height, baseColor, accentColor, gradientColors }) => {
+interface SVGsProps {
+  beams: BeamPath[];
+  width: number;
+  height: number;
+  baseColor: string;
+  accentColor: string;
+  gradientColors?: {
+    start: string;
+    middle: string;
+    end: string;
+  };
+}
+
+const SVGs = ({ beams, width, height, baseColor, accentColor, gradientColors }: SVGsProps) => {
   return (
     <svg
       width={width}
