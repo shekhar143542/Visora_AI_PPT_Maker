@@ -1,0 +1,174 @@
+/**
+ * Theme Containment CSS
+ * Ensures presentation themes are scoped only to slide content
+ * and don't affect the application UI
+ */
+
+/* Theme-scoped containers - only apply theme styles within these */
+.slide-theme-preview {
+  contain: style layout;
+  isolation: isolate;
+}
+
+.slide-container {
+  contain: style layout;
+  isolation: isolate;
+}
+
+/* Prevent theme styles from bleeding to parent elements */
+.slide-theme-preview * {
+  /* Reset any inherited theme styles */
+  --theme-bg-color: inherit;
+  --theme-text-color: inherit;
+  --theme-accent-color: inherit;
+}
+
+/* Application UI protection - ensure these elements are never affected by theme */
+.editor-header,
+.editor-sidebar,
+.editor-toolbar,
+.editor-navigation,
+.editor-controls,
+.app-header,
+.app-sidebar,
+.app-navigation,
+.navbar,
+.sidebar,
+.toolbar,
+.controls,
+.modal,
+.dialog,
+.popover,
+.dropdown,
+.button,
+.input,
+.select,
+.textarea,
+.checkbox,
+.radio,
+.switch,
+.slider,
+.progress,
+.alert,
+.toast,
+.notification {
+  /* Force application theme styles */
+  background-color: var(--app-bg-color, inherit) !important;
+  color: var(--app-text-color, inherit) !important;
+  border-color: var(--app-border-color, inherit) !important;
+}
+
+/* Dark mode protection */
+.dark .editor-header,
+.dark .editor-sidebar,
+.dark .editor-toolbar,
+.dark .editor-navigation,
+.dark .editor-controls,
+.dark .app-header,
+.dark .app-sidebar,
+.dark .app-navigation,
+.dark .navbar,
+.dark .sidebar,
+.dark .toolbar,
+.dark .controls,
+.dark .modal,
+.dark .dialog,
+.dark .popover,
+.dark .dropdown {
+  background-color: var(--dark-bg-color, #1a1a1a) !important;
+  color: var(--dark-text-color, #ffffff) !important;
+  border-color: var(--dark-border-color, #374151) !important;
+}
+
+/* Light mode protection */
+.light .editor-header,
+.light .editor-sidebar,
+.light .editor-toolbar,
+.light .editor-navigation,
+.light .editor-controls,
+.light .app-header,
+.light .app-sidebar,
+.light .app-navigation,
+.light .navbar,
+.light .sidebar,
+.light .toolbar,
+.light .controls,
+.light .modal,
+.light .dialog,
+.light .popover,
+.light .dropdown {
+  background-color: var(--light-bg-color, #ffffff) !important;
+  color: var(--light-text-color, #000000) !important;
+  border-color: var(--light-border-color, #e5e7eb) !important;
+}
+
+/* Slide content theming - only apply within slide containers */
+.slide-container .slide-content {
+  /* Allow theme styles only within slide content */
+  background-color: var(--slide-bg-color);
+  color: var(--slide-text-color);
+  font-family: var(--slide-font-family);
+}
+
+.slide-container .slide-title {
+  color: var(--slide-accent-color);
+}
+
+.slide-container .slide-accent {
+  background-color: var(--slide-accent-color);
+  color: var(--slide-bg-color);
+}
+
+/* Theme-specific slide styling */
+.slide-theme-modern .slide-content {
+  --slide-bg-color: #f8f9fa;
+  --slide-text-color: #333333;
+  --slide-accent-color: #3b82f6;
+  --slide-font-family: 'Inter', sans-serif;
+}
+
+.slide-theme-corporate .slide-content {
+  --slide-bg-color: #ffffff;
+  --slide-text-color: #1f2937;
+  --slide-accent-color: #1e40af;
+  --slide-font-family: 'Roboto', sans-serif;
+}
+
+.slide-theme-creative .slide-content {
+  --slide-bg-color: #fef3c7;
+  --slide-text-color: #92400e;
+  --slide-accent-color: #f59e0b;
+  --slide-font-family: 'Poppins', sans-serif;
+}
+
+/* Ensure theme styles don't affect application elements */
+body:not(.slide-theme-preview) {
+  /* Reset any theme variables that might have leaked */
+  --theme-bg-color: unset;
+  --theme-text-color: unset;
+  --theme-accent-color: unset;
+  --theme-font-family: unset;
+}
+
+/* CSS containment for theme isolation */
+.theme-isolated {
+  contain: style layout;
+  isolation: isolate;
+  position: relative;
+  z-index: 1;
+}
+
+/* Prevent theme inheritance */
+.theme-isolated * {
+  /* Reset inherited theme properties */
+  background-color: unset;
+  color: unset;
+  font-family: unset;
+}
+
+/* Only apply theme styles to direct children with theme classes */
+.theme-isolated .slide-theme-modern,
+.theme-isolated .slide-theme-corporate,
+.theme-isolated .slide-theme-creative {
+  /* Theme styles are applied via inline styles or specific CSS classes */
+}

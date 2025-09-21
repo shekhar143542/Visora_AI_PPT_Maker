@@ -12,6 +12,7 @@ import AlertDialougBox from '../aler-dialog';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { deleteProject, recoverProject } from '@/actions/project';
+import { Upload, Sparkles } from 'lucide-react';
 
 type Props = {
     projectId: string;
@@ -20,7 +21,9 @@ type Props = {
     isDeleted: boolean;
     slideData: JsonValue
     themeName: string;
-    
+    source?: string;
+    originalFileName?: string;
+    importDate?: string;
 }
 
 const ProjectCard = ({
@@ -30,7 +33,9 @@ const ProjectCard = ({
     isDeleted,
     slideData,
     themeName,
-  
+    source = 'ai-generated',
+    originalFileName,
+    importDate,
 }:Props) => {
 
     const [loading,setLoading] = useState(false);
@@ -140,15 +145,35 @@ const ProjectCard = ({
         </div>
         <div className='w-full'>
             <div className='space-y-1'>
-                <h3 className='font-semibold text-base text-primary line-clamp-1'>
-                    {title}
-                </h3>
+                <div className='flex items-center gap-2'>
+                    <h3 className='font-semibold text-base text-primary line-clamp-1 flex-1'>
+                        {title}
+                    </h3>
+                    {source === 'imported' ? (
+                        <div className='flex items-center gap-1 px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full text-xs'>
+                            <Upload className='h-3 w-3' />
+                            Imported
+                        </div>
+                    ) : (
+                        <div className='flex items-center gap-1 px-2 py-1 bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 rounded-full text-xs'>
+                            <Sparkles className='h-3 w-3' />
+                            AI Generated
+                        </div>
+                    )}
+                </div>
                 <div className='flex w-full justify-between items-center gap-2'>
-                    <p className="text-sm text-muted-foreground dark:text-gray-400"
-                    suppressHydrationWarning
-                    >
-                        {timeAgo(createdAt)}
-                    </p>
+                    <div className='flex flex-col'>
+                        <p className="text-sm text-muted-foreground dark:text-gray-400"
+                        suppressHydrationWarning
+                        >
+                            {source === 'imported' && importDate ? timeAgo(importDate) : timeAgo(createdAt)}
+                        </p>
+                        {source === 'imported' && originalFileName && (
+                            <p className="text-xs text-muted-foreground dark:text-gray-500">
+                                from {originalFileName}
+                            </p>
+                        )}
+                    </div>
 
                     {isDeleted ? 
                     (

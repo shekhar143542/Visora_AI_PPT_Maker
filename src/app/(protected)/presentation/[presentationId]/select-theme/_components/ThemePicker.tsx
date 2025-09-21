@@ -52,6 +52,10 @@ const ThemePicker = ({
     }
 
     try {
+        console.log(`🟢 Starting layout generation for project ${params.presentationId} with theme ${currentTheme.name}`)
+        console.log(`🟢 Project outlines:`, project?.outlines)
+        console.log(`🟢 Expected slide count: ${project?.outlines?.length || 0}`)
+        
         const res = await generateLayouts(params.presentationId as string,
             currentTheme.name
         )
@@ -60,12 +64,15 @@ const ThemePicker = ({
             throw new Error('Failed to generate layouts')
         }
 
+        console.log(`🟢 Layout generation completed. Generated ${res.data?.length || 0} slides`)
+        console.log(`🟢 Generated slides:`, res.data)
+
         toast.success('Success',{
-            description: 'Layouts generated',
+            description: `Generated ${res.data?.length || 0} slides successfully`,
         })
 
         router.push(`/presentation/${project?.id}`)
-        setSlides(res.data)
+        setSlides(res.data || [])
 
     } catch (error) {
 

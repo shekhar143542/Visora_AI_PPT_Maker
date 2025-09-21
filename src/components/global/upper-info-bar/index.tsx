@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { User } from '@prisma/client'
 import { SidebarTrigger } from '@/components/ui/sidebar'
@@ -6,6 +8,7 @@ import SearchBar from './upper-info-searchbar'
 import ThemeSwitcher from '../mode-toggle'
 import { Button } from '@/components/ui/button'
 import { Upload } from 'lucide-react'
+import ImportModal from '@/components/import/ImportModal'
 import NewProjectButton from './new-project-button'
 
 type Props = {
@@ -29,13 +32,15 @@ const UpperInfoBar = ({ user }: Props) => {
 
         {/* Right side: Buttons */}
         <div className='flex items-center gap-3 justify-end mr-2'>
-          <Button
-            className='bg-primary-80/90 hover:bg-primary-80/80 text-primary font-semibold rounded-lg shadow-sm border border-primary-80/50 
-            flex gap-2 items-center transition-colors'
-          >
-            <Upload size={16} />
-            Import
-          </Button>
+          <ImportModal>
+            <Button
+              className='bg-primary-80/90 hover:bg-primary-80/80 text-primary font-semibold rounded-lg shadow-sm border border-primary-80/50 
+              flex gap-2 items-center transition-colors'
+            >
+              <Upload size={16} />
+              Import
+            </Button>
+          </ImportModal>
 
           <div className='ml-2'>
             <NewProjectButton user={user} />

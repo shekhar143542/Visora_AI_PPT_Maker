@@ -16,6 +16,21 @@ import { Toaster } from 'sonner'
 import { Slide } from "@/lib/types";
 import { generateImages } from "@/actions/chatgpt";
 import EditorSidebar from './_components/editor-sidebar/rightsidebar';
+import { v4 as uuidv4 } from 'uuid';
+
+const createDefaultSlide = (projectId: string): Slide => ({
+  id: uuidv4(),
+  slideOrder: 0,
+  slideName: 'Imported Slide',
+  type: 'title',
+  content: {
+    id: uuidv4(),
+    type: 'title',
+    name: 'title',
+    content: 'Welcome to your imported presentation!',
+    placeholder: 'Enter slide title...'
+  }
+});
 
 const Page = () => {
   const { setSlides, setProject, currentTheme, setCurrentTheme, slides, resetSlideStore } =
@@ -47,17 +62,25 @@ const Page = () => {
         );
         console.log("🟢 Theme:", res);
         setCurrentTheme(findTheme || themes[0]);
-        setTheme(findTheme?.type === "dark" ? "dark" : "light");
+        // Note: Presentation theme should not override application theme
+        // setTheme(findTheme?.type === "dark" ? "dark" : "light");
         setProject(res.data);
 
-        const slides = JSON.parse(JSON.stringify(res.data.slides))
-        if (res.data.slides && slides.length > 0) {
-          console.log("🟢 Setting slides");
+        // Handle slides data properly for both AI-generated and imported presentations
+        if (res.data.slides && Array.isArray(res.data.slides) && res.data.slides.length > 0) {
+          const slides = JSON.parse(JSON.stringify(res.data.slides))
+          console.log("🟢 Setting slides from database:", slides.length);
           setSlides(slides);
-         
         } else {
-          await fetchSlides();
-        
+          // Only generate slides for AI-generated presentations, not imported ones
+          if (res.data.source === 'imported') {
+            console.log("🟡 Imported presentation with no slides - creating default slide");
+            const defaultSlide = createDefaultSlide(res.data.id);
+            setSlides([defaultSlide]);
+          } else {
+            console.log("🟡 No slides found, generating new ones...");
+            await fetchSlides();
+          }
         }
       } catch (error) {
         console.error("Error fetching slides:", error);
@@ -77,13 +100,18 @@ const Page = () => {
 
   const fetchSlides = async () => {
     try {
+      console.log("🔄 Attempting to generate slides for project:", params.presentationId);
+      
       const response = await fetch("/api/generateStreamLayouts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ projectId: params.presentationId }),
       });
+      
       if (!response.ok) {
-        throw new Error("Failed to generate slides");
+        const errorText = await response.text();
+        console.error("❌ API Error:", response.status, errorText);
+        throw new Error(`Failed to generate slides: ${response.status} ${errorText}`);
       }
 
       if (!response.body) throw new Error("No response body");
@@ -162,12 +190,16 @@ const Page = () => {
 
   
     } catch (error) {
-      console.error("Error:", error);
-     toast.error(
-           "Error",{
-            description: "Unable to fetch project",
-          });
-      redirect("/dashboard");
+      console.error("❌ Error generating slides:", error);
+      
+      // Create a fallback slide instead of redirecting
+      console.log("🟡 Creating fallback slide due to API error");
+      const fallbackSlide = createDefaultSlide(params.presentationId as string);
+      setSlides([fallbackSlide]);
+      
+      toast.warning("Slide Generation Failed", {
+        description: "Created a default slide. You can edit it or add more slides.",
+      });
     }
   };
 

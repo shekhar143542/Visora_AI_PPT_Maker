@@ -185,7 +185,16 @@ export const deleteProject = async (projectId: string) => {
     }
 }
 
-export const createProject = async (title: string, outlines: OutlineCard[]) => {
+export const createProject = async (
+    title: string, 
+    outlines: OutlineCard[], 
+    options?: {
+        source?: 'ai-generated' | 'imported'
+        originalFileName?: string
+        fileSize?: number
+        fileType?: string
+    }
+) => {
     try {
         if(!title || !outlines || outlines.length === 0) {
             return {
@@ -210,6 +219,11 @@ export const createProject = async (title: string, outlines: OutlineCard[]) => {
                 outlines: allOutlines,
                 createdAt: new Date(),
                 updatedAt: new Date(),
+                source: options?.source || 'ai-generated',
+                originalFileName: options?.originalFileName,
+                importDate: options?.source === 'imported' ? new Date() : null,
+                fileSize: options?.fileSize,
+                fileType: options?.fileType,
             },
         });
 

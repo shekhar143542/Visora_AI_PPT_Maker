@@ -1,3 +1,6 @@
+/* Import theme containment styles */
+@import '../styles/theme-containment.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

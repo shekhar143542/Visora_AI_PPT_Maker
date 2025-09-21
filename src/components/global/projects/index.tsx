@@ -26,7 +26,9 @@ const Projects = ({projects}: Props) => {
         isDeleted={project?.isDeleted ?? false}
         slideData={project?.slides}
         themeName={project.themeName ?? "Default"}
-       
+        source={(project as any)?.source}
+        originalFileName={(project as any)?.originalFileName}
+        importDate={(project as any)?.importDate?.toString()}
         />
       ))}
     </motion.div>

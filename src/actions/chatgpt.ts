@@ -10,14 +10,14 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 })
 
-export const generateCreativePrompt = async (userPrompt: string) => {
+export const generateCreativePrompt = async (userPrompt: string, slideCount: number = 6) => {
     const openai = new OpenAI({
         apiKey: process.env.OPENAI_API_KEY,
     })
 
     const finalPrompt = `
     Create a coherent and relevant outline for the following prompt: ${userPrompt}.
-    The outline should consist of at least 6 points, with each point written as a single sentence.
+    The outline should consist of exactly ${slideCount} points, with each point written as a single sentence.
     Ensure the outline is well-structured and directly related to the topic. 
     Return the output in the following JSON format:
   
@@ -32,17 +32,17 @@ export const generateCreativePrompt = async (userPrompt: string) => {
       ]
     }
   
-    Ensure that the JSON is valid and properly formatted. Do not include any other text or explanations outside the JSON.
+    IMPORTANT: Return ONLY the JSON object. Do not wrap it in markdown code blocks or include any other text or explanations outside the JSON.
     `
 
     try {
         const completion = await openai.chat.completions.create({
-            model: 'chatgpt-4o-latest',
+            model: 'gpt-4o',
             messages: [
                 {
                     role: 'system',
                     content:
-                        'You are a helpful AI that generates outlines for presentations.',
+                        'You are a helpful AI that generates outlines for presentations. Always return your response as valid JSON without any markdown formatting or code blocks.',
                 },
                 {
                     role: 'user',
@@ -56,7 +56,9 @@ export const generateCreativePrompt = async (userPrompt: string) => {
         const responseContent = completion.choices[0].message?.content
         if (responseContent) {
             try {
-                const jsonResponse = JSON.parse(responseContent)
+                // Remove markdown code blocks if present
+                const cleanedContent = responseContent.replace(/```json|```/g, '').trim()
+                const jsonResponse = JSON.parse(cleanedContent)
                 return { status: 200, data: jsonResponse }
             } catch (error) {
                 console.error('Invalid JSON received:', responseContent, error)
@@ -547,19 +549,23 @@ const replaceImagePlaceholders = async (layout: Slide) => {
 export const generateLayoutsJson = async (outlineArray: string[]) => {
     const prompt = `### Guidelines
 You are a highly creative AI that generates JSON-based layouts for presentations. I will provide you with a pattern and a format to follow, and for each outline, you must generate unique layouts and contents and give me the output in the JSON format expected.
+
+CRITICAL: You must generate EXACTLY ${outlineArray.length} slides - no more, no less. Each slide should correspond to one outline item.
+
 Our final JSON output is a combination of layouts and elements. The available LAYOUTS TYPES are as follows: "accentLeft", "accentRight", "imageAndText", "textAndImage", "twoColumns", "twoColumnsWithHeadings", "threeColumns", "threeColumnsWithHeadings", "fourColumns", "twoImageColumns", "threeImageColumns", "fourImageColumns", "tableLayout".
 The available CONTENT TYPES are "heading1", "heading2", "heading3", "heading4", "title", "paragraph", "table", "resizable-column", "image", "blockquote", "numberedList", "bulletList", "todoList", "calloutBox", "codeBlock", "tableOfContents", "divider", "column"
 
 Use these outlines as a starting point for the content of the presentations 
   ${JSON.stringify(outlineArray)}
 
-The output must be an array of JSON objects.
+The output must be an array of JSON objects with EXACTLY ${outlineArray.length} items.
   1. Write layouts based on the specific outline provided. Do not use types that are not mentioned in the example layouts.
   2. Ensuring each layout is unique.
   3. Adhere to the structure of existing layouts
   4. Fill placeholder data into content fields where required.
   5. Generate unique image placeholders for the 'content' property of image components and also alt text according to the outline.
   6. Ensure proper formatting and schema alignment for the output JSON.
+  7. IMPORTANT: Generate exactly ${outlineArray.length} slides - one for each outline item provided.
 7. First create LAYOUTS TYPES  at the top most level of the JSON output as follows ${JSON.stringify(
         [
             {
@@ -736,13 +742,24 @@ ${JSON.stringify([
         let jsonResponse
         try {
             jsonResponse = JSON.parse(responseContent.replace(/```json|```/g, ''))
+            
+            // Validate that we got exactly the expected number of slides
+            if (!Array.isArray(jsonResponse)) {
+                throw new Error('AI response is not an array')
+            }
+            
+            if (jsonResponse.length !== outlineArray.length) {
+                console.warn(`⚠️ AI generated ${jsonResponse.length} slides but expected ${outlineArray.length}. Truncating to expected count.`)
+                jsonResponse = jsonResponse.slice(0, outlineArray.length)
+            }
+            
             await Promise.all(jsonResponse.map(replaceImagePlaceholders))
         } catch (error) {
             console.log('🔴 ERROR:', error)
             throw new Error('Invalid JSON format received from AI')
         }
 
-        console.log('🟢 Layouts generated successfully')
+        console.log(`🟢 Layouts generated successfully: ${jsonResponse.length} slides`)
         return { status: 200, data: jsonResponse }
     } catch (error) {
         console.error('🔴 ERROR:', error)
@@ -785,6 +802,7 @@ export const generateLayouts = async (projectId: string, theme: string) => {
             return { status: 400, error: 'Project does not have any outlines' }
         }
 
+        console.log(`🟢 Generating layouts for ${project.outlines.length} outlines:`, project.outlines)
         const layouts = await generateLayoutsJson(project.outlines)
 
         if (layouts.status !== 200) {

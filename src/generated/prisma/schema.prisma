@@ -25,18 +25,24 @@ model User {
 }
 
 model Project {
-  id          String   @id @default(cuid())
-  title       String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  slides      Json?
-  userId      String   @db.Uuid
-  outlines    String[]
-  isDeleted   Boolean? @default(false)
-  isSellable  Boolean? @default(false)
-  varientId   String?
-  thumbnail   String?
-  themeName   String?  @default("light")
-  User        User     @relation("OwnedProjects", fields: [userId], references: [id])
-  PurchasedBy User[]   @relation("PurchasedProjects")
+  id               String    @id @default(cuid())
+  title            String
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  slides           Json?
+  userId           String    @db.Uuid
+  outlines         String[]
+  isDeleted        Boolean?  @default(false)
+  isSellable       Boolean?  @default(false)
+  varientId        String?
+  thumbnail        String?
+  themeName        String?   @default("light")
+  // Import-related fields
+  source           String?   @default("ai-generated") // "ai-generated" or "imported"
+  originalFileName String? // For imported presentations
+  importDate       DateTime? // When the presentation was imported
+  fileSize         Int? // Size of the original file in bytes
+  fileType         String? // MIME type of the original file
+  User             User      @relation("OwnedProjects", fields: [userId], references: [id])
+  PurchasedBy      User[]    @relation("PurchasedProjects")
 }

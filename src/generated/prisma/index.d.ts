@@ -2212,8 +2212,18 @@ export namespace Prisma {
 
   export type AggregateProject = {
     _count: ProjectCountAggregateOutputType | null
+    _avg: ProjectAvgAggregateOutputType | null
+    _sum: ProjectSumAggregateOutputType | null
     _min: ProjectMinAggregateOutputType | null
     _max: ProjectMaxAggregateOutputType | null
+  }
+
+  export type ProjectAvgAggregateOutputType = {
+    fileSize: number | null
+  }
+
+  export type ProjectSumAggregateOutputType = {
+    fileSize: number | null
   }
 
   export type ProjectMinAggregateOutputType = {
@@ -2227,6 +2237,11 @@ export namespace Prisma {
     varientId: string | null
     thumbnail: string | null
     themeName: string | null
+    source: string | null
+    originalFileName: string | null
+    importDate: Date | null
+    fileSize: number | null
+    fileType: string | null
   }
 
   export type ProjectMaxAggregateOutputType = {
@@ -2240,6 +2255,11 @@ export namespace Prisma {
     varientId: string | null
     thumbnail: string | null
     themeName: string | null
+    source: string | null
+    originalFileName: string | null
+    importDate: Date | null
+    fileSize: number | null
+    fileType: string | null
   }
 
   export type ProjectCountAggregateOutputType = {
@@ -2255,9 +2275,22 @@ export namespace Prisma {
     varientId: number
     thumbnail: number
     themeName: number
+    source: number
+    originalFileName: number
+    importDate: number
+    fileSize: number
+    fileType: number
     _all: number
   }
 
+
+  export type ProjectAvgAggregateInputType = {
+    fileSize?: true
+  }
+
+  export type ProjectSumAggregateInputType = {
+    fileSize?: true
+  }
 
   export type ProjectMinAggregateInputType = {
     id?: true
@@ -2270,6 +2303,11 @@ export namespace Prisma {
     varientId?: true
     thumbnail?: true
     themeName?: true
+    source?: true
+    originalFileName?: true
+    importDate?: true
+    fileSize?: true
+    fileType?: true
   }
 
   export type ProjectMaxAggregateInputType = {
@@ -2283,6 +2321,11 @@ export namespace Prisma {
     varientId?: true
     thumbnail?: true
     themeName?: true
+    source?: true
+    originalFileName?: true
+    importDate?: true
+    fileSize?: true
+    fileType?: true
   }
 
   export type ProjectCountAggregateInputType = {
@@ -2298,6 +2341,11 @@ export namespace Prisma {
     varientId?: true
     thumbnail?: true
     themeName?: true
+    source?: true
+    originalFileName?: true
+    importDate?: true
+    fileSize?: true
+    fileType?: true
     _all?: true
   }
 
@@ -2339,6 +2387,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: ProjectAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProjectSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: ProjectMinAggregateInputType
@@ -2369,6 +2429,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ProjectCountAggregateInputType | true
+    _avg?: ProjectAvgAggregateInputType
+    _sum?: ProjectSumAggregateInputType
     _min?: ProjectMinAggregateInputType
     _max?: ProjectMaxAggregateInputType
   }
@@ -2386,7 +2448,14 @@ export namespace Prisma {
     varientId: string | null
     thumbnail: string | null
     themeName: string | null
+    source: string | null
+    originalFileName: string | null
+    importDate: Date | null
+    fileSize: number | null
+    fileType: string | null
     _count: ProjectCountAggregateOutputType | null
+    _avg: ProjectAvgAggregateOutputType | null
+    _sum: ProjectSumAggregateOutputType | null
     _min: ProjectMinAggregateOutputType | null
     _max: ProjectMaxAggregateOutputType | null
   }
@@ -2418,6 +2487,11 @@ export namespace Prisma {
     varientId?: boolean
     thumbnail?: boolean
     themeName?: boolean
+    source?: boolean
+    originalFileName?: boolean
+    importDate?: boolean
+    fileSize?: boolean
+    fileType?: boolean
     User?: boolean | UserDefaultArgs<ExtArgs>
     PurchasedBy?: boolean | Project$PurchasedByArgs<ExtArgs>
     _count?: boolean | ProjectCountOutputTypeDefaultArgs<ExtArgs>
@@ -2436,6 +2510,11 @@ export namespace Prisma {
     varientId?: boolean
     thumbnail?: boolean
     themeName?: boolean
+    source?: boolean
+    originalFileName?: boolean
+    importDate?: boolean
+    fileSize?: boolean
+    fileType?: boolean
     User?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -2452,6 +2531,11 @@ export namespace Prisma {
     varientId?: boolean
     thumbnail?: boolean
     themeName?: boolean
+    source?: boolean
+    originalFileName?: boolean
+    importDate?: boolean
+    fileSize?: boolean
+    fileType?: boolean
     User?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["project"]>
 
@@ -2468,9 +2552,14 @@ export namespace Prisma {
     varientId?: boolean
     thumbnail?: boolean
     themeName?: boolean
+    source?: boolean
+    originalFileName?: boolean
+    importDate?: boolean
+    fileSize?: boolean
+    fileType?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "createdAt" | "updatedAt" | "slides" | "userId" | "outlines" | "isDeleted" | "isSellable" | "varientId" | "thumbnail" | "themeName", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "createdAt" | "updatedAt" | "slides" | "userId" | "outlines" | "isDeleted" | "isSellable" | "varientId" | "thumbnail" | "themeName" | "source" | "originalFileName" | "importDate" | "fileSize" | "fileType", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     User?: boolean | UserDefaultArgs<ExtArgs>
     PurchasedBy?: boolean | Project$PurchasedByArgs<ExtArgs>
@@ -2502,6 +2591,11 @@ export namespace Prisma {
       varientId: string | null
       thumbnail: string | null
       themeName: string | null
+      source: string | null
+      originalFileName: string | null
+      importDate: Date | null
+      fileSize: number | null
+      fileType: string | null
     }, ExtArgs["result"]["project"]>
     composites: {}
   }
@@ -2939,6 +3033,11 @@ export namespace Prisma {
     readonly varientId: FieldRef<"Project", 'String'>
     readonly thumbnail: FieldRef<"Project", 'String'>
     readonly themeName: FieldRef<"Project", 'String'>
+    readonly source: FieldRef<"Project", 'String'>
+    readonly originalFileName: FieldRef<"Project", 'String'>
+    readonly importDate: FieldRef<"Project", 'DateTime'>
+    readonly fileSize: FieldRef<"Project", 'Int'>
+    readonly fileType: FieldRef<"Project", 'String'>
   }
     
 
@@ -3420,7 +3519,12 @@ export namespace Prisma {
     isSellable: 'isSellable',
     varientId: 'varientId',
     thumbnail: 'thumbnail',
-    themeName: 'themeName'
+    themeName: 'themeName',
+    source: 'source',
+    originalFileName: 'originalFileName',
+    importDate: 'importDate',
+    fileSize: 'fileSize',
+    fileType: 'fileType'
   };
 
   export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
@@ -3533,6 +3637,20 @@ export namespace Prisma {
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
   /**
    * Deep Input Types
    */
@@ -3642,6 +3760,11 @@ export namespace Prisma {
     varientId?: StringNullableFilter<"Project"> | string | null
     thumbnail?: StringNullableFilter<"Project"> | string | null
     themeName?: StringNullableFilter<"Project"> | string | null
+    source?: StringNullableFilter<"Project"> | string | null
+    originalFileName?: StringNullableFilter<"Project"> | string | null
+    importDate?: DateTimeNullableFilter<"Project"> | Date | string | null
+    fileSize?: IntNullableFilter<"Project"> | number | null
+    fileType?: StringNullableFilter<"Project"> | string | null
     User?: XOR<UserScalarRelationFilter, UserWhereInput>
     PurchasedBy?: UserListRelationFilter
   }
@@ -3659,6 +3782,11 @@ export namespace Prisma {
     varientId?: SortOrderInput | SortOrder
     thumbnail?: SortOrderInput | SortOrder
     themeName?: SortOrderInput | SortOrder
+    source?: SortOrderInput | SortOrder
+    originalFileName?: SortOrderInput | SortOrder
+    importDate?: SortOrderInput | SortOrder
+    fileSize?: SortOrderInput | SortOrder
+    fileType?: SortOrderInput | SortOrder
     User?: UserOrderByWithRelationInput
     PurchasedBy?: UserOrderByRelationAggregateInput
   }
@@ -3679,6 +3807,11 @@ export namespace Prisma {
     varientId?: StringNullableFilter<"Project"> | string | null
     thumbnail?: StringNullableFilter<"Project"> | string | null
     themeName?: StringNullableFilter<"Project"> | string | null
+    source?: StringNullableFilter<"Project"> | string | null
+    originalFileName?: StringNullableFilter<"Project"> | string | null
+    importDate?: DateTimeNullableFilter<"Project"> | Date | string | null
+    fileSize?: IntNullableFilter<"Project"> | number | null
+    fileType?: StringNullableFilter<"Project"> | string | null
     User?: XOR<UserScalarRelationFilter, UserWhereInput>
     PurchasedBy?: UserListRelationFilter
   }, "id">
@@ -3696,9 +3829,16 @@ export namespace Prisma {
     varientId?: SortOrderInput | SortOrder
     thumbnail?: SortOrderInput | SortOrder
     themeName?: SortOrderInput | SortOrder
+    source?: SortOrderInput | SortOrder
+    originalFileName?: SortOrderInput | SortOrder
+    importDate?: SortOrderInput | SortOrder
+    fileSize?: SortOrderInput | SortOrder
+    fileType?: SortOrderInput | SortOrder
     _count?: ProjectCountOrderByAggregateInput
+    _avg?: ProjectAvgOrderByAggregateInput
     _max?: ProjectMaxOrderByAggregateInput
     _min?: ProjectMinOrderByAggregateInput
+    _sum?: ProjectSumOrderByAggregateInput
   }
 
   export type ProjectScalarWhereWithAggregatesInput = {
@@ -3717,6 +3857,11 @@ export namespace Prisma {
     varientId?: StringNullableWithAggregatesFilter<"Project"> | string | null
     thumbnail?: StringNullableWithAggregatesFilter<"Project"> | string | null
     themeName?: StringNullableWithAggregatesFilter<"Project"> | string | null
+    source?: StringNullableWithAggregatesFilter<"Project"> | string | null
+    originalFileName?: StringNullableWithAggregatesFilter<"Project"> | string | null
+    importDate?: DateTimeNullableWithAggregatesFilter<"Project"> | Date | string | null
+    fileSize?: IntNullableWithAggregatesFilter<"Project"> | number | null
+    fileType?: StringNullableWithAggregatesFilter<"Project"> | string | null
   }
 
   export type UserCreateInput = {
@@ -3837,6 +3982,11 @@ export namespace Prisma {
     varientId?: string | null
     thumbnail?: string | null
     themeName?: string | null
+    source?: string | null
+    originalFileName?: string | null
+    importDate?: Date | string | null
+    fileSize?: number | null
+    fileType?: string | null
     User: UserCreateNestedOneWithoutProjectsInput
     PurchasedBy?: UserCreateNestedManyWithoutPurchasedProjectsInput
   }
@@ -3854,6 +4004,11 @@ export namespace Prisma {
     varientId?: string | null
     thumbnail?: string | null
     themeName?: string | null
+    source?: string | null
+    originalFileName?: string | null
+    importDate?: Date | string | null
+    fileSize?: number | null
+    fileType?: string | null
     PurchasedBy?: UserUncheckedCreateNestedManyWithoutPurchasedProjectsInput
   }
 
@@ -3869,6 +4024,11 @@ export namespace Prisma {
     varientId?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     themeName?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    importDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
     User?: UserUpdateOneRequiredWithoutProjectsNestedInput
     PurchasedBy?: UserUpdateManyWithoutPurchasedProjectsNestedInput
   }
@@ -3886,6 +4046,11 @@ export namespace Prisma {
     varientId?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     themeName?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    importDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
     PurchasedBy?: UserUncheckedUpdateManyWithoutPurchasedProjectsNestedInput
   }
 
@@ -3902,6 +4067,11 @@ export namespace Prisma {
     varientId?: string | null
     thumbnail?: string | null
     themeName?: string | null
+    source?: string | null
+    originalFileName?: string | null
+    importDate?: Date | string | null
+    fileSize?: number | null
+    fileType?: string | null
   }
 
   export type ProjectUpdateManyMutationInput = {
@@ -3916,6 +4086,11 @@ export namespace Prisma {
     varientId?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     themeName?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    importDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProjectUncheckedUpdateManyInput = {
@@ -3931,6 +4106,11 @@ export namespace Prisma {
     varientId?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     themeName?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    importDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -4152,6 +4332,28 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -4180,6 +4382,15 @@ export namespace Prisma {
     varientId?: SortOrder
     thumbnail?: SortOrder
     themeName?: SortOrder
+    source?: SortOrder
+    originalFileName?: SortOrder
+    importDate?: SortOrder
+    fileSize?: SortOrder
+    fileType?: SortOrder
+  }
+
+  export type ProjectAvgOrderByAggregateInput = {
+    fileSize?: SortOrder
   }
 
   export type ProjectMaxOrderByAggregateInput = {
@@ -4193,6 +4404,11 @@ export namespace Prisma {
     varientId?: SortOrder
     thumbnail?: SortOrder
     themeName?: SortOrder
+    source?: SortOrder
+    originalFileName?: SortOrder
+    importDate?: SortOrder
+    fileSize?: SortOrder
+    fileType?: SortOrder
   }
 
   export type ProjectMinOrderByAggregateInput = {
@@ -4206,6 +4422,15 @@ export namespace Prisma {
     varientId?: SortOrder
     thumbnail?: SortOrder
     themeName?: SortOrder
+    source?: SortOrder
+    originalFileName?: SortOrder
+    importDate?: SortOrder
+    fileSize?: SortOrder
+    fileType?: SortOrder
+  }
+
+  export type ProjectSumOrderByAggregateInput = {
+    fileSize?: SortOrder
   }
   export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -4232,6 +4457,36 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedJsonNullableFilter<$PrismaModel>
     _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type ProjectCreateNestedManyWithoutUserInput = {
@@ -4355,6 +4610,18 @@ export namespace Prisma {
   export type ProjectUpdateoutlinesInput = {
     set?: string[]
     push?: string | string[]
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type UserUpdateOneRequiredWithoutProjectsNestedInput = {
@@ -4537,6 +4804,17 @@ export namespace Prisma {
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
   }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
   export type NestedJsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -4561,6 +4839,47 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type ProjectCreateWithoutUserInput = {
     id?: string
     title: string
@@ -4573,6 +4892,11 @@ export namespace Prisma {
     varientId?: string | null
     thumbnail?: string | null
     themeName?: string | null
+    source?: string | null
+    originalFileName?: string | null
+    importDate?: Date | string | null
+    fileSize?: number | null
+    fileType?: string | null
     PurchasedBy?: UserCreateNestedManyWithoutPurchasedProjectsInput
   }
 
@@ -4588,6 +4912,11 @@ export namespace Prisma {
     varientId?: string | null
     thumbnail?: string | null
     themeName?: string | null
+    source?: string | null
+    originalFileName?: string | null
+    importDate?: Date | string | null
+    fileSize?: number | null
+    fileType?: string | null
     PurchasedBy?: UserUncheckedCreateNestedManyWithoutPurchasedProjectsInput
   }
 
@@ -4613,6 +4942,11 @@ export namespace Prisma {
     varientId?: string | null
     thumbnail?: string | null
     themeName?: string | null
+    source?: string | null
+    originalFileName?: string | null
+    importDate?: Date | string | null
+    fileSize?: number | null
+    fileType?: string | null
     User: UserCreateNestedOneWithoutProjectsInput
   }
 
@@ -4629,6 +4963,11 @@ export namespace Prisma {
     varientId?: string | null
     thumbnail?: string | null
     themeName?: string | null
+    source?: string | null
+    originalFileName?: string | null
+    importDate?: Date | string | null
+    fileSize?: number | null
+    fileType?: string | null
   }
 
   export type ProjectCreateOrConnectWithoutPurchasedByInput = {
@@ -4668,6 +5007,11 @@ export namespace Prisma {
     varientId?: StringNullableFilter<"Project"> | string | null
     thumbnail?: StringNullableFilter<"Project"> | string | null
     themeName?: StringNullableFilter<"Project"> | string | null
+    source?: StringNullableFilter<"Project"> | string | null
+    originalFileName?: StringNullableFilter<"Project"> | string | null
+    importDate?: DateTimeNullableFilter<"Project"> | Date | string | null
+    fileSize?: IntNullableFilter<"Project"> | number | null
+    fileType?: StringNullableFilter<"Project"> | string | null
   }
 
   export type ProjectUpsertWithWhereUniqueWithoutPurchasedByInput = {
@@ -4842,6 +5186,11 @@ export namespace Prisma {
     varientId?: string | null
     thumbnail?: string | null
     themeName?: string | null
+    source?: string | null
+    originalFileName?: string | null
+    importDate?: Date | string | null
+    fileSize?: number | null
+    fileType?: string | null
   }
 
   export type ProjectUpdateWithoutUserInput = {
@@ -4856,6 +5205,11 @@ export namespace Prisma {
     varientId?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     themeName?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    importDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
     PurchasedBy?: UserUpdateManyWithoutPurchasedProjectsNestedInput
   }
 
@@ -4871,6 +5225,11 @@ export namespace Prisma {
     varientId?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     themeName?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    importDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
     PurchasedBy?: UserUncheckedUpdateManyWithoutPurchasedProjectsNestedInput
   }
 
@@ -4886,6 +5245,11 @@ export namespace Prisma {
     varientId?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     themeName?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    importDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProjectUpdateWithoutPurchasedByInput = {
@@ -4900,6 +5264,11 @@ export namespace Prisma {
     varientId?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     themeName?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    importDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
     User?: UserUpdateOneRequiredWithoutProjectsNestedInput
   }
 
@@ -4916,6 +5285,11 @@ export namespace Prisma {
     varientId?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     themeName?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    importDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ProjectUncheckedUpdateManyWithoutPurchasedByInput = {
@@ -4931,6 +5305,11 @@ export namespace Prisma {
     varientId?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
     themeName?: NullableStringFieldUpdateOperationsInput | string | null
+    source?: NullableStringFieldUpdateOperationsInput | string | null
+    originalFileName?: NullableStringFieldUpdateOperationsInput | string | null
+    importDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type UserUpdateWithoutPurchasedProjectsInput = {

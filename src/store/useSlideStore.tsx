@@ -8,7 +8,7 @@ interface SlideState {
 
     slides: Slide[],
     project: Project | null;
-    setProject: (id: Project) => void;
+    setProject: (id: Project | null) => void;
     setSlides: (slides: Slide[]) => void;
     currentSlide: number
     currentTheme: Theme
@@ -55,6 +55,9 @@ export const useSlideStore = create(persist <SlideState>((set, get) => ({
     setCurrentTheme: (theme:Theme) => set({currentTheme:theme}),
     getOrderedSlides: () => {
         const state = get();
+        if (!state.slides || !Array.isArray(state.slides)) {
+          return [];
+        }
         return [...state.slides].sort((a, b) => a.slideOrder - b.slideOrder);
       },
 

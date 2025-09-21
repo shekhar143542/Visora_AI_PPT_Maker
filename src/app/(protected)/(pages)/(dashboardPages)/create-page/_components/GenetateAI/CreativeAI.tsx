@@ -40,7 +40,7 @@ const CreativeAI = ({onBack}:Props) => {
         
         } = useCreativeAIStore();
 
-    const [noOfCards, setNoOfCards] = useState(0);
+    const [noOfCards, setNoOfCards] = useState(6); // Default to 6 slides
 
     const {setProject} = useSlideStore()
 
@@ -65,8 +65,19 @@ const CreativeAI = ({onBack}:Props) => {
 
             return 
         }
+
+        if(noOfCards < 1 || noOfCards > 20){
+            toast.error('Error',
+                {
+                    description: 'Please select a valid number of slides (1-20).',
+                    duration: 3000,
+                }
+            )
+
+            return 
+        }
         setIsGenerating(true);
-        const res = await generateCreativePrompt(currentAiPrompt);
+        const res = await generateCreativePrompt(currentAiPrompt, noOfCards);
         if(res.status === 200 && res?.data?.outlines){
             const cardsData : OutlineCard[] = []
             res.data?.outlines.map((outline:string, idx:number) => {
@@ -79,11 +90,10 @@ const CreativeAI = ({onBack}:Props) => {
             } )
 
             addMultipleOutlines(cardsData)
-            setNoOfCards(cardsData.length)
 
             toast.success("Success",
                 {
-                    description:'Outlines generated successfully'
+                    description:`${cardsData.length} slide outlines generated successfully`
                 }
             )
         }else{
@@ -107,13 +117,12 @@ const CreativeAI = ({onBack}:Props) => {
         setSelectedCard(null);
         setEditText('')
         setCurrentAiPrompt('');
+        setNoOfCards(6); // Reset to default 6 slides
         resetOutlines();
 
     }
 
-    useEffect(() => {
-        setNoOfCards(outlines.length);
-    }, [outlines.length]);
+    // Removed useEffect that was overriding user's slide count selection
 
     //WIP
      const handleGenerate = async () => {
@@ -214,15 +223,11 @@ const CreativeAI = ({onBack}:Props) => {
         <SelectContent
         className="w-fit"
         >
-            {outlines.length === 0 ? (
-                <SelectItem value="0" className="fontn-semibold">No Cards</SelectItem>
-            ) : (
-                Array.from({ length: outlines.length }, (_, index) => index + 1).map((num) => (
-                    <SelectItem key={num} value={num.toString()} className="font-semibold">
-                        {num} {num === 1 ? 'Card' : 'Cards'}
-                    </SelectItem>
-                ))
-            )}
+            {Array.from({ length: 20 }, (_, index) => index + 1).map((num) => (
+                <SelectItem key={num} value={num.toString()} className="font-semibold">
+                    {num} {num === 1 ? 'Card' : 'Cards'}
+                </SelectItem>
+            ))}
         </SelectContent>
 
         <Select>
@@ -247,8 +252,7 @@ const CreativeAI = ({onBack}:Props) => {
         <div className="w-full flex justify-center items-center">
             <Button className="font-medium text-lg flex gap-2 items-center"
              onClick={generateOutline}
-            // disabled={isGenerating || !currentAiPrompt || noOfCards <= 0}
-              disabled={isGenerating}
+              disabled={isGenerating || !currentAiPrompt || noOfCards < 1}
             >
                 {isGenerating ? (
                     <>

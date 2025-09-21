@@ -146,7 +146,12 @@ exports.Prisma.ProjectScalarFieldEnum = {
   isSellable: 'isSellable',
   varientId: 'varientId',
   thumbnail: 'thumbnail',
-  themeName: 'themeName'
+  themeName: 'themeName',
+  source: 'source',
+  originalFileName: 'originalFileName',
+  importDate: 'importDate',
+  fileSize: 'fileSize',
+  fileType: 'fileType'
 };
 
 exports.Prisma.SortOrder = {

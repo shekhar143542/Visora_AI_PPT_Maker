@@ -99,13 +99,14 @@
 
 
 
-import { Download, Home, Play, Share2 } from 'lucide-react'
+import { Home, Play, Share2 } from 'lucide-react'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import { useSlideStore } from '@/store/useSlideStore'
 import PresentationMode from './PresentationMode'
+import DownloadDropdown from '@/components/download/DownloadDropdown'
 
 type Props = {
   presentationId: string
@@ -190,20 +191,8 @@ const Navbar = ({ presentationId }: Props) => {
           <span className="hidden sm:inline">Present</span>
         </Button>
 
-        {/* ⬇️ Download Button */}
-        <Button
-          variant={'outline'}
-          className="flex items-center gap-2"
-        //   WIP add download feature
-        //   onClick={handleDownload}
-          style={{
-            backgroundColor: 'white',
-            color: 'black'
-          }}
-        >
-          <Download className="w-4 h-4" />
-          <span className="hidden sm:inline">Download</span>
-        </Button>
+        {/* ⬇️ Download Dropdown */}
+        <DownloadDropdown />
       </div>
 
    
