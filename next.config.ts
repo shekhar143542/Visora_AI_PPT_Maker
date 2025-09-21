@@ -49,6 +49,9 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true, // ✅ This will skip ESLint errors during build
   },
+
+  transpilePackages: ["src/generated/prisma"],
 };
+
 
 export default nextConfig;
