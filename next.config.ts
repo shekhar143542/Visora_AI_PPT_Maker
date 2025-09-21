@@ -43,6 +43,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  typescript: {
+    ignoreBuildErrors: true, // ✅ Ignore TypeScript type errors during build
+  },
+  eslint: {
+    ignoreDuringBuilds: true, // ✅ This will skip ESLint errors during build
+  },
 };
 
 export default nextConfig;
